@@ -1,0 +1,73 @@
+<style type="sass">
+    $fontcolor: #7b7b7b;
+    $activecolor: #13b113;
+    .tab {
+        color: $fontcolor;
+        position: fixed;
+        bottom: 0;
+        height: 100rpx;
+        width: 100%;
+        border-top: 1px solid #dad9d6;
+        background-color: #f7f7f7;
+        font-size: 22rpx;
+        .tab_item {
+            &.active {
+                color: $activecolor;
+            }
+            display: inline-block;
+            width: 25%;
+            text-align: center;
+        }
+        .icon {
+            width: 60rpx;
+            height: 60rpx;
+            display: block;
+            margin: auto;
+        }
+        .title {
+            padding-top: 6rpx;
+            display: block;
+        }
+    }
+</style>
+<template>
+    <view class="tab">
+        <view class="tab_item tab_message{{active == 0 ? ' active' : ''}}" bindtap="change" data-wepy-params="0">
+            <image class="icon" src="../images/message{{active == 0 ? '_active' : ''}}.png"></image>
+            <text class="title">微信</text>
+        </view>
+        <view class="tab_item tab_contact{{active == 1 ? ' active' : ''}}" bindtap="change" data-wepy-params="1">
+            <image class="icon" src="../images/contact{{active == 1 ? '_active' : ''}}.png"></image>
+            <text class="title">通讯录</text>
+        </view>
+        <view class="tab_item tab_discovery{{active == 2 ? ' active' : ''}}" bindtap="change" data-wepy-params="2">
+            <image class="icon" src="../images/discovery{{active == 2 ? '_active' : ''}}.png"></image>
+            <text class="title">发现</text>
+        </view>
+        <view class="tab_item tab_me{{active == 3 ? ' active' : ''}}" bindtap="change" data-wepy-params="3">
+            <image class="icon" src="../images/me{{active == 3 ? '_active' : ''}}.png"></image>
+            <text class="title">我</text>
+        </view>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy';
+
+    export default class Tab extends wepy.component {
+
+        data = {
+            active: 0,
+        };
+
+        methods = {
+            change (evt, idx) {
+                this.active = +idx;
+
+                this.$parent.changeTab(idx);
+            }
+        };
+
+        onLoad () {
+        }
+    }
+</script>

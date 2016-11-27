@@ -1,0 +1,87 @@
+<style type="sass">
+    .tab_item {
+        height: 100%;
+    }
+</style>
+<template>
+    <view class="body">
+        <view class="tab_item tab_message" hidden="{{currentTab != 0}}">
+            <component id="message"></component>
+        </view>
+        <view class="tab_item tab_contact" hidden="{{currentTab != 1}}">
+            <component id="contact"></component>
+        </view>
+        <view class="tab_item tab_discovery" hidden="{{currentTab != 2}}">
+            <component id="discovery"></component>
+        </view>
+        <view class="tab_item tab_me" hidden="{{currentTab != 3}}">
+            <component id="me"></component>
+        </view>
+        <component id="tab"></component>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy';
+    import Message from '../components/message';
+    import Discovery from '../components/discovery';
+    import Contact from '../components/contact';
+    import Me from '../components/me';
+    import Tab from '../components/tab';
+
+    export default class Index extends wepy.page {
+
+        config = {
+            "navigationBarTitleText": "wepy - 微信",
+            "navigationBarTextStyle": "white",
+            "navigationBarBackgroundColor": "＃3b3a40"
+        };
+        components = {
+            message: Message,
+            discovery: Discovery,
+            me: Me,
+            contact: Contact,
+            tab: Tab,
+        };
+
+        data = {
+            currentTab: 0,
+        };
+        methods = {
+        };
+
+        changeTab (idx) {
+            this.currentTab = +idx;
+            this.$apply();
+        }
+        async onLoad() {
+            try {
+                console.log(222);
+
+                
+                // 调用应用实例的方法获取全局数据
+                let userInfo;
+                try {
+                    userInfo = await this.$parent.getUserInfo();
+                } catch (e) {
+                    userInfo = {
+                        nickName: 'Network error'
+                    }
+                }
+                if (userInfo)
+                    this.userInfo = userInfo;
+                this.normalTitle = '标题已被修改';
+
+                this.setTimeoutTitle = '标题三秒后会被修改';
+                setTimeout(() => {
+                    this.setTimeoutTitle = '到三秒了';
+                    this.$apply();
+                }, 3000);
+
+                this.$apply();
+            } catch (error) {
+                console.error(error.stack);
+            }
+        }
+    }
+</script>

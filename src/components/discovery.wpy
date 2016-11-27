@@ -1,0 +1,48 @@
+<style type="sass">
+    $fontcolor: #7b7b7b;
+    $activecolor: #13b113;
+    .discovery {
+        background-color: #f0eff5;
+        height: 100%;
+        padding-top: 0rpx;
+    }
+</style>
+<template>
+    <view class="discovery">
+
+        <component id="moment" path="list"></component>
+
+        <component id="action" path="list"></component>
+
+        <component id="drift" path="list"></component>
+
+        <component id="shopping" path="list"></component>
+
+    </view>
+</template>
+<script>
+    import wepy from 'wepy';
+
+    import List from './list';
+
+    export default class Message extends wepy.component {
+
+        components = {
+            moment: List,
+            action: List,
+            drift: List,
+            shopping: List,
+        };
+        data = {
+        };
+        methods = {
+        };
+
+        onLoad () {
+            this.$invoke('moment', 'load', [{icon: '../images/moment.png', title: '朋友圈'}]);
+            this.$invoke('shopping', 'load', [{icon: '../images/shopping.png', title: '购物'}]);
+            this.$invoke('drift', 'load', [{icon: '../images/drift.png', title: '漂流瓶'}]);
+            this.$invoke('action', 'load', [{icon: '../images/scan.png', title: '扫一扫'}, {icon: '../images/shake.png', title: '摇一摇'}]);
+        }
+    }
+</script>

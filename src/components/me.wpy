@@ -1,0 +1,102 @@
+<style type="sass">
+    $fontcolor: #7b7b7b;
+    $activecolor: #13b113;
+    .me {
+        background-color: #f0eff5;
+        height: 100%;
+        padding-top: 30rpx;
+        .item {
+            background-color: #fff;
+            height: 100rpx;
+            position: relative;
+            box-sizing: border-box;
+            padding: 20rpx;
+            border-bottom: 1px solid #eeeeee;
+            &.info {
+                height: 176rpx;
+                position: relative;
+                .me_icon {
+                    width: 130rpx;
+                    height: 130rpx;
+                    margin-left: 0rpx;
+                    border-radius: 10rpx;
+                    position: absolute;
+                }
+                .qr_code {
+                    position: absolute;
+                    right: 60rpx;
+                    width: 50rpx;
+                    height: 50rpx;
+                    margin-top: -65rpx;
+                }
+                .arrow_left {
+                    position: absolute;
+                    right: 20rpx;
+                    width: 30rpx;
+                    height: 40rpx;
+                    margin-top: -60rpx;
+                }
+                .wechat_info {
+                    padding-left: 150rpx;
+                    padding-top: 25rpx;
+                    .wechat_name {
+                        font-size: 32rpx;
+                    }
+                    .wechat_id {
+                        margin-top: 20rpx;
+                        color: #333;
+                        font-size: 26rpx;
+                    }
+                }
+            }
+        }
+    }
+</style>
+<template>
+    <view class="me">
+        <view class="info item">
+            <image class="me_icon" src="../images/myheader.png"></image>
+            <view class="wechat_info">
+                <view class="wechat_name">Gcaufy</view>
+                <view class="wechat_id">微信号：gcaufy</view>
+            </view>
+            <image class="qr_code" src="../images/qr_code.png"></image>
+            <image class="arrow_left" src="../images/arrow_left.png"></image>
+        </view>
+
+        <component id="album" path="list"></component>
+        <component id="emoji" path="list"></component>
+        <component id="setting" path="list"></component>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy';
+
+    import List from './list';
+
+    export default class Me extends wepy.component {
+
+        components = {
+            album: List,
+            emoji: List,
+            setting: List,
+        }
+
+        data = {
+        };
+
+        methods = {
+        };
+
+        onLoad () {
+            this.$invoke('album', 'load', [
+                {icon: '../images/album.png', title: '相册'},
+                {icon: '../images/collect.png', title: '收藏'},
+                {icon: '../images/wallet.png', title: '钱包'},
+                {icon: '../images/card.png', title: '卡包'},
+            ]);
+            this.$invoke('setting', 'load', [{icon: '../images/setting.png', title: '设置'}]);
+            this.$invoke('emoji', 'load', [{icon: '../images/emoji.png', title: '表情'}]);
+        }
+    }
+</script>

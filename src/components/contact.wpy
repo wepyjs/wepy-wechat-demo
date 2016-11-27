@@ -1,0 +1,109 @@
+<style type="sass">
+    $fontcolor: #7b7b7b;
+    $activecolor: #13b113;
+    .contact {
+        .toplist {
+            padding-left: 20rpx;
+            padding-right: 20rpx;
+            background-color: #fff;
+            .item {
+                height: 110rpx;
+                border-top: 1px solid #dad9d6;
+                box-sizing: border-box;
+                padding: 20rpx;
+                position: relative;
+                .header {
+                    width: 70rpx;
+                    height: 70rpx;
+                    position: absolute;
+                    overflow: hidden;
+                    border-radius: 10rpx;
+                    .img {
+                        width: 70rpx;
+                        height: 70rpx;
+                    }
+                }
+                .content {
+                    margin-left: 90rpx;
+                    margin-top: 10rpx;
+                    .name {
+                        color: #232323;
+                        font-weight: bold;
+                        font-size: 32rpx;
+                        padding: 10rpx 0;
+                    }
+                    .lastmsg {
+                        color: $fontcolor;
+                        font-size: 26rpx;
+                        padding: 10rpx 0;
+                    }
+                }
+            }
+        }
+        .friends {
+            .sep {
+                background-color: #f1f0f6;
+                color: #7e7d83;
+                height: 45rpx;
+                padding: 12rpx 0 10rpx 20rpx;
+                font-size: 28rpx;
+                font-weight: bold;
+                box-sizing: border-box;
+            }
+        }
+    }
+</style>
+<template>
+    <view class="contact">
+        <view class="toplist">
+            <block wx:for="{{toplist}}" wx:for-index="index" wx:for-item="item">
+                <view class="item">
+                    <view class="header">
+                        <image class="img" src="{{item.header}}" width="70rpx" height="70rpx"></image>
+                    </view>
+                    <view class="content">
+                        <view class="name">{{item.name}}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="friends">
+            <view class="sep">A</view>
+        </view>
+        <view class="lefttag">
+            <component id="alpha"></component>
+        </view>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy';
+    import Alpha from './alpha';
+
+    export default class Message extends wepy.component {
+
+        components = {
+            alpha: Alpha
+        };
+
+        data = {
+            toplist: [{
+                header: '../images/new_friend.png',
+                name: '新的朋友',
+            },{
+                header: '../images/group_chat.png',
+                name: '群聊',
+            },{
+                header: '../images/tag.png',
+                name: '标签',
+            },{
+                header: '../images/public.png',
+                name: '公众号',
+            },]
+        };
+        methods = {
+        };
+
+        onLoad () {
+        }
+    }
+</script>
