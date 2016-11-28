@@ -28,7 +28,6 @@
                     margin-top: 10rpx;
                     .name {
                         color: #232323;
-                        font-weight: bold;
                         font-size: 32rpx;
                         padding: 10rpx 0;
                     }
@@ -41,14 +40,48 @@
             }
         }
         .friends {
+            padding-left: 20rpx;
+            padding-right: 20rpx;
+            padding-bottom: 100rpx;
             .sep {
                 background-color: #f1f0f6;
                 color: #7e7d83;
                 height: 45rpx;
-                padding: 12rpx 0 10rpx 20rpx;
-                font-size: 28rpx;
+                padding: 6rpx 0 10rpx 20rpx;
+                font-size: 26rpx;
                 font-weight: bold;
                 box-sizing: border-box;
+                margin-left: -20rpx;
+                margin-right: -20rpx;
+            }
+            .user {
+                height: 110rpx;
+                border-bottom: 1px solid #dad9d6;
+                box-sizing: border-box;
+                padding: 20rpx;
+                position: relative;
+                .user_icon {
+                    width: 70rpx;
+                    height: 70rpx;
+                    position: absolute;
+                    border-radius: 10rpx;
+                }
+                .user_name {
+                    margin-left: 90rpx;
+                    margin-top: 10rpx;
+                    font-size: 32rpx;
+                    line-height: 70rpx;
+                }
+            }
+            .total {
+                height: 120rpx;
+                background-color: #eee;
+                margin-left: -20rpx;
+                margin-right: -20rpx;
+                text-align: center;
+                line-height: 140rpx;
+                color: $fontcolor;
+                font-size: 32rpx;
             }
         }
     }
@@ -68,7 +101,16 @@
             </block>
         </view>
         <view class="friends">
-            <view class="sep">A</view>
+            <block wx:for="{{contacts}}" wx:for-index="alpha" wx:for-item="lists">
+                <view class="sep">{{alpha}}</view>
+                <block wx:for="{{lists}}" wx:for-index="index" wx:for-item="item">
+                    <view class="user" data-wepy-params="{{item.id}}" bindtap="select">
+                         <image src="{{item.icon}}" class="user_icon"></image>
+                         <text class="user_name">{{item.name}}</text>
+                    </view>
+                </block>
+            </block>
+            <view class="total">{{total}}位联系人</view>
         </view>
         <view class="lefttag">
             <component id="alpha"></component>
@@ -78,11 +120,12 @@
 <script>
     import wepy from 'wepy';
     import Alpha from './alpha';
+    import api from '../common/api';
 
     export default class Message extends wepy.component {
 
         components = {
-            alpha: Alpha
+            alpha: Alpha,
         };
 
         data = {
@@ -98,12 +141,40 @@
             },{
                 header: '../images/public.png',
                 name: '公众号',
-            },]
+            },],
+            contacts: {},
+            total: 0,
         };
         methods = {
+            select (evt, id) {
+                console.log(`${id} is selected`);
+            }
         };
 
         onLoad () {
+            this.loadContact();
+        }
+
+        format (arr) {
+            let obj = {}, c;
+            arr.forEach((item) => {
+                c = item.id[0].toUpperCase();
+                if (obj[c]) {
+                    obj[c].push(item);
+                } else {
+                    obj[c] = [item];
+                }
+            });
+            return obj;
+        }
+
+        async loadContact () {
+            let contacts;
+
+            contacts = await api.getContact();
+            this.total = contacts.length;
+            this.contacts = this.format(contacts);
+            this.$apply();
         }
     }
 </script>

@@ -54,34 +54,7 @@
             this.currentTab = +idx;
             this.$apply();
         }
-        async onLoad() {
-            try {
-                console.log(222);
-
-                
-                // 调用应用实例的方法获取全局数据
-                let userInfo;
-                try {
-                    userInfo = await this.$parent.getUserInfo();
-                } catch (e) {
-                    userInfo = {
-                        nickName: 'Network error'
-                    }
-                }
-                if (userInfo)
-                    this.userInfo = userInfo;
-                this.normalTitle = '标题已被修改';
-
-                this.setTimeoutTitle = '标题三秒后会被修改';
-                setTimeout(() => {
-                    this.setTimeoutTitle = '到三秒了';
-                    this.$apply();
-                }, 3000);
-
-                this.$apply();
-            } catch (error) {
-                console.error(error.stack);
-            }
+        onLoad() {
         }
     }
 </script>

@@ -26,14 +26,12 @@
                 margin-left: 120rpx;
                 .name {
                     color: #000;
-                    font-weight: bold;
-                    font-size: 32rpx;
+                    font-size: 30rpx;
                     padding: 10rpx 0;
                 }
                 .lastmsg {
                     color: $fontcolor;
-                    font-size: 26rpx;
-                    padding: 10rpx 0;
+                    font-size: 24rpx;
                 }
             }
         }
@@ -42,9 +40,9 @@
 <template>
     <view class="message">
         <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
-            <view class="item">
+            <view class="item" bindtap="select" data-wepy-params="{{item.id}}">
                 <view class="header">
-                    <image class="img" src="{{item.header}}"></image>
+                    <image class="img" src="{{item.icon}}"></image>
                 </view>
                 <view class="content">
                     <view class="name">{{item.name}}</view>
@@ -56,34 +54,28 @@
 </template>
 <script>
     import wepy from 'wepy';
+    import api from '../common/api';
 
     export default class Message extends wepy.component {
 
         data = {
-            list: [{
-                header: '../images/header/mht.png',
-                name: 'Pony',
-                lastmsg: '[视频]',
-            },{
-                header: '../images/header/my.png',
-                name: 'wepy 体验交流群',
-                lastmsg: '[语音]',
-            },{
-                header: '../images/header/lyh.png',
-                name: 'pony',
-                lastmsg: '[21条]Pony: 真是不错啊。',
-            },{
-                header: '../images/header/dl.png',
-                name: 'pony',
-                lastmsg: 'Hi',
-            },]
+            list: []
         };
         
 
         methods = {
+            select (evt, id) {
+                wx.navigateTo({url: 'chat?id=' + id});
+            }
         };
 
         onLoad () {
+            this.loadMessage();
+        }
+
+        async loadMessage () {
+            this.list = await api.getMessageList();
+            this.$apply();
         }
     }
 </script>

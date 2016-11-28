@@ -55,10 +55,10 @@
 <template>
     <view class="me">
         <view class="info item">
-            <image class="me_icon" src="../images/myheader.png"></image>
+            <image class="me_icon" src="{{userInfo.avatarUrl}}"></image>
             <view class="wechat_info">
-                <view class="wechat_name">Gcaufy</view>
-                <view class="wechat_id">微信号：gcaufy</view>
+                <view class="wechat_name">{{userInfo.nickName}}</view>
+                <view class="wechat_id">微信号：{{userInfo.id}}</view>
             </view>
             <image class="qr_code" src="../images/qr_code.png"></image>
             <image class="arrow_left" src="../images/arrow_left.png"></image>
@@ -73,6 +73,7 @@
     import wepy from 'wepy';
 
     import List from './list';
+    import api from '../common/api';
 
     export default class Me extends wepy.component {
 
@@ -83,6 +84,11 @@
         }
 
         data = {
+            userInfo: {
+                nickName: 'Gcaufy',
+                id: 'gcaufy',
+                avatarUrl: '../images/myheader.png',
+            }
         };
 
         methods = {
@@ -97,6 +103,21 @@
             ]);
             this.$invoke('setting', 'load', [{icon: '../images/setting.png', title: '设置'}]);
             this.$invoke('emoji', 'load', [{icon: '../images/emoji.png', title: '表情'}]);
+
+
+            this.setUserInfo();
+        }
+
+        async setUserInfo() {
+            let res;
+            try {
+                res = await api.getUserInfo();
+            } catch (e) {
+                res = {userInfo: this.userInfo};
+            }
+
+            ['nickName', 'avatarUrl'].forEach((v) => this.userInfo[v] = res.userInfo[v]);
+            this.$apply();
         }
     }
 </script>

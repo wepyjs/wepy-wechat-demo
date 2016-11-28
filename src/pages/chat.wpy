@@ -1,0 +1,45 @@
+<style type="sass">
+    .tab_item {
+        height: 100%;
+    }
+</style>
+<template>
+    <view class="body">
+        <component id="chartboard"></component>
+        <component id="input"></component>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy';
+
+    import Input from '../components/input';
+    import Chartboard from '../components/chartboard';
+
+    export default class Chat extends wepy.page {
+
+        config = {
+            "navigationBarTitleText": "wepy - 微信",
+            "navigationBarTextStyle": "white",
+            "navigationBarBackgroundColor": "＃3b3a40"
+        };
+        components = {
+            input: Input,
+            chartboard: Chartboard,
+        };
+
+        data = {
+            currentTab: 0,
+        };
+        methods = {
+        };
+
+        changeTab (idx) {
+            this.currentTab = +idx;
+            this.$apply();
+        }
+        onLoad (p) {
+            wx.setNavigationBarTitle({title: p.id});
+        }
+    }
+</script>

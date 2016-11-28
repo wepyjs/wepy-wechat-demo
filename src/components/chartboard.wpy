@@ -1,0 +1,27 @@
+<style type="sass">
+    $fontcolor: #7b7b7b;
+    $activecolor: #13b113;
+    .chartboard {}
+</style>
+<template>
+    <view class="chartboard">
+        <view class="">
+            chartboard
+        </view>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy';
+
+    export default class Chartboard extends wepy.component {
+
+        data = {
+        };
+
+        methods = {
+        };
+
+        onLoad () {
+        }
+    }
+</script>

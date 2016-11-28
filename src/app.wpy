@@ -1,6 +1,7 @@
 <style type="sass">
 page, .body{
     height: 100%;
+    font-family: "\5FAE\8F6F\96C5\9ED1", arial;
 }
 </style>
 
@@ -12,8 +13,9 @@ import "babel-polyfill";
 export default class extends wepy.app {
 
     config = {
-            "pages":[
-            "pages/index"
+        "pages":[
+            "pages/index",
+            "pages/chat"
         ],
         "window":{
             "backgroundTextStyle": "light",
