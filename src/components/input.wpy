@@ -31,7 +31,7 @@
                 margin-left: 120rpx;
                 margin-right: 240rpx;
                 height: 80rpx;
-                font-size: 34rpx;
+                font-size: 32rpx;
                 color: #000;
                 &.focus {
                     border-bottom: 1px solid #9bb793;
@@ -52,6 +52,9 @@
                 text-align: center;
                 font-size: 30rpx;
                 margin-top:8rpx;
+                &.hidden {
+                    display: none;
+                }
             }
         }
     }
@@ -62,8 +65,8 @@
             <image class="input_icon voice" src="../images/voice.png"></image>
             <image class="input_icon face" src="../images/face.png"></image>
             <image class="input_icon plus" src="../images/plus.png"></image>
-            <view class="send" hidden="{{readyToSend.length === 0}}">发送</view>
-            <input bindinput="input" class="input_text{{focus ? ' focus' : ''}}" bindfocus="focus" bindblur="blur" bindtype="input"></input>
+            <view class="send{{readyToSend.length == 0 ? ' hidden' : ''}}" bindtap="send">发送</view>
+            <input bindinput="input" value="{{readyToSend}}" class="input_text{{focus ? ' focus' : ''}}" bindfocus="focus" bindblur="blur" bindtype="input"></input>
         </view>
     </view>
 </template>
@@ -78,14 +81,24 @@
         };
 
         methods = {
+            send (evt) {
+                if (this.readyToSend) {
+                    this.$invoke('../chartboard', 'sendMessage', this.readyToSend);
+                }
+            },
             input (evt) {
                 this.readyToSend = evt.detail.value;
             },
             focus (evt) {
                 this.focus = true;
+                this.$invoke('../chartboard', 'fixPosition', this.focus);
             },
             blur (evt) {
                 this.focus = false;
+                this.$invoke('../chartboard', 'fixPosition', this.focus);
+            },
+            clear () {
+                this.readyToSend = '';
             }
         };
 

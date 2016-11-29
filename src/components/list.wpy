@@ -35,7 +35,7 @@
 <template>
     <view class="list">
         <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
-            <view class="item" bindtap="click" data-wepy-params="{{item.title}}">
+            <view class="item" bindtap="click" data-wepy-params="{{item.id}}-{{item.title}}">
                 <image class="icon" src="{{item.icon}}"></image>
                 <text class="title">{{item.title}}</text>
                 <image class="arrow_left" src="../images/arrow_left.png"></image>
@@ -53,8 +53,11 @@
         };
 
         methods = {
-            click (evt, name) {
+            click (evt, id, name) {
                 console.log('clicked: ' + name);
+                if (id === 'clear') {
+                    this.$invoke('/me', 'clearHistory');
+                }
             }
         };
 
@@ -63,7 +66,6 @@
 
         load(list) {
             this.list = list;
-            console.log(this.list);
             this.$apply();
         }
     }

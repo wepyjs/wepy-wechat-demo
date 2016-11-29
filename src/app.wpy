@@ -30,7 +30,6 @@ export default class extends wepy.app {
     };
 
     onLaunch() {
-        console.log(this);
     }
 
     async getUserInfo() {

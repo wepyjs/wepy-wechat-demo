@@ -121,6 +121,7 @@
     import wepy from 'wepy';
     import Alpha from './alpha';
     import api from '../common/api';
+    import global from '../common/global';
 
     export default class Message extends wepy.component {
 
@@ -147,7 +148,8 @@
         };
         methods = {
             select (evt, id) {
-                console.log(`${id} is selected`);
+                //console.log(`${id} is selected`);
+                wx.navigateTo({url: 'chat?id=' + id});
             }
         };
 
@@ -170,8 +172,16 @@
 
         async loadContact () {
             let contacts;
+            let contactObj = {};
 
             contacts = await api.getContact();
+
+            contacts.forEach((v) => {
+                contactObj[v.id] = v;
+            });
+
+            global.setContact(contactObj);
+
             this.total = contacts.length;
             this.contacts = this.format(contacts);
             this.$apply();

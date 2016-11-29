@@ -29,6 +29,7 @@
     import Me from '../components/me';
     import Tab from '../components/tab';
 
+
     export default class Index extends wepy.page {
 
         config = {
@@ -54,7 +55,10 @@
             this.currentTab = +idx;
             this.$apply();
         }
-        onLoad() {
+        onShow() {
+            this.currentTab = 0;
+            this.$invoke('message', 'loadMessage');
+            this.$invoke('tab', 'change', 0);
         }
     }
 </script>

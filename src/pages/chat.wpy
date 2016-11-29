@@ -1,6 +1,7 @@
 <style type="sass">
-    .tab_item {
+    .body{
         height: 100%;
+        background-color: #ededed;
     }
 </style>
 <template>
@@ -15,6 +16,8 @@
 
     import Input from '../components/input';
     import Chartboard from '../components/chartboard';
+
+    import global from '../common/global';
 
     export default class Chat extends wepy.page {
 
@@ -39,7 +42,14 @@
             this.$apply();
         }
         onLoad (p) {
-            wx.setNavigationBarTitle({title: p.id});
-        }
+            let contact = global.getContact(p.id);
+            if (!contact) {
+                wx.navigateBack();
+                return;
+            }
+            wx.setNavigationBarTitle({title: contact.name});
+
+            this.$invoke('chartboard', 'loadMessage', p.id);
+        }   
     }
 </script>

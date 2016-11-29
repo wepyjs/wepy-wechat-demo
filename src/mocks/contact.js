@@ -23,6 +23,12 @@ let users = [
     {id: 'xiaoyanzi', name: '小燕子'},
     {id: 'xiaozhuozi', name: '小卓子'},
     {id: 'ziwei', name: '紫薇'},
+    {id: 'mahuateng', name: '马化腾'},
+    {id: 'mayun', name: '马云'},
+    {id: 'dinglei', name: '丁磊'},
+    {id: 'liyanhong', name: '李彦宏'},
+    {id: 'liuqiangdong', name: '刘强东'},
+    {id: 'liuchuanzhi', name: '刘传志'},
 ];
 
 

@@ -30,8 +30,11 @@
                     padding: 10rpx 0;
                 }
                 .lastmsg {
+                    overflow: hidden;
+                    height: 32rpx;
                     color: $fontcolor;
-                    font-size: 24rpx;
+                    font-size: 26rpx;
+                    padding-top: 5rpx;
                 }
             }
         }
@@ -68,10 +71,6 @@
                 wx.navigateTo({url: 'chat?id=' + id});
             }
         };
-
-        onLoad () {
-            this.loadMessage();
-        }
 
         async loadMessage () {
             this.list = await api.getMessageList();
