@@ -18,12 +18,17 @@ npm install wepy-cli -g
 git clone git@github.com:wepyjs/wepy-wechat-demo.git
 ```
 
-### 3. 编译源代码
+### 3. 安装开发依赖
+```bash
+npm install
+```
+
+### 4. 编译源代码
 ```bash
 wepy build
 ```
 
-### 4.导入至开发者工具
+### 5.导入至开发者工具
 
 编译完成后会生成`dist`目录，开发者工具本地开发目录指向`dist`目录。
 
