@@ -31,11 +31,6 @@
                         font-size: 32rpx;
                         padding: 10rpx 0;
                     }
-                    .lastmsg {
-                        color: $fontcolor;
-                        font-size: 26rpx;
-                        padding: 10rpx 0;
-                    }
                 }
             }
         }
@@ -69,7 +64,7 @@
                 .user_name {
                     margin-left: 90rpx;
                     margin-top: 10rpx;
-                    font-size: 32rpx;
+                    font-size: 33rpx;
                     line-height: 70rpx;
                 }
             }
@@ -81,7 +76,7 @@
                 text-align: center;
                 line-height: 140rpx;
                 color: $fontcolor;
-                font-size: 32rpx;
+                font-size: 33rpx;
             }
         }
     }

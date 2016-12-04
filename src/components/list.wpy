@@ -1,16 +1,15 @@
 <style type="sass">
-    $fontcolor: #7b7b7b;
-    $activecolor: #13b113;
+    $border: 1px solid #eeeeee;
     .list {
-        margin-top: 30rpx;
+        margin-top: 40rpx;
         background-color: #fff;
-        border-bottom: 1px solid #eeeeee;
+        border-bottom: $border;
         .item {
             height: 100rpx;
             position: relative;
             box-sizing: border-box;
             padding: 20rpx;
-            border-bottom: 1px solid #eeeeee;
+            border-bottom: $border;
             .icon {
                 width: 60rpx;
                 height: 60rpx;
@@ -27,7 +26,7 @@
             .title {
                 padding: 18rpx 0 0 100rpx;
                 display: block;
-                font-size: 30rpx;
+                font-size: 33rpx;
             }
         }
     }

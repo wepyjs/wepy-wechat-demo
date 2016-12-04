@@ -1,19 +1,18 @@
 <style type="sass">
-    $fontcolor: #7b7b7b;
-    $activecolor: #13b113;
+    $bgcolor: #f0eff5;
     .me {
-        background-color: #f0eff5;
+        background-color: $bgcolor;
         height: 100%;
-        padding-top: 30rpx;
+        padding-top: 40rpx;
         .item {
             background-color: #fff;
             height: 100rpx;
             position: relative;
             box-sizing: border-box;
-            padding: 20rpx;
+            padding: 15rpx 25rpx;
             border-bottom: 1px solid #eeeeee;
             &.info {
-                height: 176rpx;
+                height: 160rpx;
                 position: relative;
                 .me_icon {
                     width: 130rpx;

@@ -26,7 +26,7 @@
                 margin-left: 120rpx;
                 .name {
                     color: #000;
-                    font-size: 30rpx;
+                    font-size: 33rpx;
                     padding: 10rpx 0;
                 }
                 .lastmsg {

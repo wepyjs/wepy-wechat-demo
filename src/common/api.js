@@ -44,7 +44,11 @@ export default {
         });
     },
 
-
+    // select * from history h 
+    // left join contact c 
+    // on (h.from == c.id or h.to == c.id) 
+    // where h.from = :id or h.to = :id or :id = '';
+    // order by h.time asc;
     getHistory (id) {
         let history = wx.getStorageSync('_wechat_history_') || m_history;
         return new Promise((resolve, reject) => {
@@ -58,7 +62,12 @@ export default {
             });
         });
     },
-
+    // select *, (select msg from history h2 where h2.from = c.id or h2.to = c.id order by time desc limit 1) as lastmsg 
+    // from history h 
+    // left join contact c 
+    // on (h.from == c.id or h.to == c.id) 
+    // where h.from = :id or h.to = :id or :id = '';
+    // order by h.time desc;
     getMessageList () {
         let history = wx.getStorageSync('_wechat_history_') || m_history;
         return new Promise((resolve, reject) => {

@@ -1,3 +1,6 @@
+
+let prod = process.env.NODE_ENV === 'production';
+
 module.exports = {
   "wpyExt": ".wpy",
   "sass": {
@@ -18,3 +21,33 @@ module.exports = {
     ]
   }
 };
+
+
+if (prod || true) {
+  // 压缩sass
+  module.exports['sass'] = {"outputStyle": "compressed"};
+  
+  // 压缩less
+  module.exports['less'] = {"compress": true};
+
+  // 压缩js
+  module.exports.plugins = {
+      'UglifyJsPlugin': {
+          filter: /\.js$/,
+          config: {
+              compress: {
+                  warnings: false
+              }
+          }
+      },
+      'TestPlugin': {
+          filter: /\.wxss$/,
+          config: {
+          }
+      },
+      'ImageMinPlugin': {
+          filter: /\.(png|jpg|jpeg)$/,
+          config: {}
+      }
+  };
+}

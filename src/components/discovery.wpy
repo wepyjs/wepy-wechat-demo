@@ -1,8 +1,7 @@
 <style type="sass">
-    $fontcolor: #7b7b7b;
-    $activecolor: #13b113;
+    $bgcolor: #f0eff5;
     .discovery {
-        background-color: #f0eff5;
+        background-color: $bgcolor;
         height: 100%;
         padding-top: 0rpx;
     }
