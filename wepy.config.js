@@ -23,7 +23,7 @@ module.exports = {
 };
 
 
-if (prod || true) {
+if (prod) {
   // 压缩sass
   module.exports['sass'] = {"outputStyle": "compressed"};
   
@@ -39,15 +39,6 @@ if (prod || true) {
                   warnings: false
               }
           }
-      },
-      'TestPlugin': {
-          filter: /\.wxss$/,
-          config: {
-          }
-      },
-      'ImageMinPlugin': {
-          filter: /\.(png|jpg|jpeg)$/,
-          config: {}
       }
   };
 }
