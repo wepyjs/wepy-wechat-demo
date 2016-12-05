@@ -35,7 +35,7 @@
         config = {
             "navigationBarTitleText": "wepy - 微信",
             "navigationBarTextStyle": "white",
-            "navigationBarBackgroundColor": "＃3b3a40"
+            "navigationBarBackgroundColor": "#3b3a40"
         };
         components = {
             message: Message,
