@@ -18,6 +18,8 @@
             <me />
         </view>
         <tab v-bind:active="currentTab" />
+
+        <toast />
     </view>
 </template>
 
@@ -28,6 +30,9 @@
     import Contact from '../components/contact';
     import Me from '../components/me';
     import Tab from '../components/tab';
+
+
+    import Toast from 'wepy-com-toast';
 
 
     export default class Index extends wepy.page {
@@ -43,6 +48,7 @@
             me: Me,
             contact: Contact,
             tab: Tab,
+            toast: Toast
         };
 
         data = {
@@ -54,6 +60,19 @@
         onShow() {
             this.currentTab = 0;
             this.$invoke('message', 'loadMessage');
+        }
+
+
+        showToast(name) {
+
+            let promise = this.$invoke('toast', 'show', {
+                title: `${name}`,
+                img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png',
+            });
+
+            promise.then((d) => {
+                console.log('toast done');
+            });
         }
     }
 </script>
