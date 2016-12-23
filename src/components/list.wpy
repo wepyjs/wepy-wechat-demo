@@ -34,7 +34,7 @@
 <template>
     <view class="list">
         <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
-            <view class="item" bindtap="click" data-wepy-params="{{item.id}}-{{item.title}}">
+            <view class="item" bindtap="click({{index}}, {{item.id}},{{item.title}})">
                 <image class="icon" src="{{item.icon}}"></image>
                 <text class="title">{{item.title}}</text>
                 <image class="arrow_left" src="../images/arrow_left.png"></image>
@@ -47,16 +47,16 @@
 
     export default class List extends wepy.component {
 
+        props = {
+            list: {}
+        }
         data = {
-            list: []
         };
 
         methods = {
-            click (evt, id, name) {
-                console.log('clicked: ' + name);
-                if (id === 'clear') {
-                    this.$invoke('/me', 'clearHistory');
-                }
+            click (evt, index, id, name) {
+                console.log('index: ' + index + 'clicked: ' + name);
+                this.list[index].action && this.list[index].action.call(this.$parent);
             }
         };
 

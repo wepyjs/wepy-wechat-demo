@@ -76,5 +76,6 @@
             this.list = await api.getMessageList();
             this.$apply();
         }
+
     }
 </script>

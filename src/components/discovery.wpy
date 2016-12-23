@@ -9,13 +9,10 @@
 <template>
     <view class="discovery">
 
-        <component id="moment" path="list"></component>
-
-        <component id="action" path="list"></component>
-
-        <component id="drift" path="list"></component>
-
-        <component id="shopping" path="list"></component>
+        <moment v-bind:list="dMoment" />
+        <action v-bind:list="dShopping" />
+        <drift v-bind:list="dDrift" />
+        <shopping v-bind:list="dAction" />
 
     </view>
 </template>
@@ -33,15 +30,15 @@
             shopping: List,
         };
         data = {
+            dMoment: [{icon: '../images/moment.png', title: '朋友圈'}],
+            dShopping: [{icon: '../images/shopping.png', title: '购物'}],
+            dDrift: [{icon: '../images/drift.png', title: '漂流瓶'}],
+            dAction: [{icon: '../images/scan.png', title: '扫一扫'}, {icon: '../images/shake.png', title: '摇一摇'}]
         };
         methods = {
         };
 
         onLoad () {
-            this.$invoke('moment', 'load', [{icon: '../images/moment.png', title: '朋友圈'}]);
-            this.$invoke('shopping', 'load', [{icon: '../images/shopping.png', title: '购物'}]);
-            this.$invoke('drift', 'load', [{icon: '../images/drift.png', title: '漂流瓶'}]);
-            this.$invoke('action', 'load', [{icon: '../images/scan.png', title: '扫一扫'}, {icon: '../images/shake.png', title: '摇一摇'}]);
         }
     }
 </script>

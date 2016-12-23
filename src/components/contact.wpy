@@ -108,7 +108,7 @@
             <view class="total">{{total}}位联系人</view>
         </view>
         <view class="lefttag">
-            <component id="alpha"></component>
+            <alpha />
         </view>
     </view>
 </template>

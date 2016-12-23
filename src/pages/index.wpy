@@ -9,15 +9,15 @@
             <component id="message"></component>
         </view>
         <view class="tab_item tab_contact" hidden="{{currentTab != 1}}">
-            <component id="contact"></component>
+            <contact />
         </view>
         <view class="tab_item tab_discovery" hidden="{{currentTab != 2}}">
-            <component id="discovery"></component>
+            <discovery />
         </view>
         <view class="tab_item tab_me" hidden="{{currentTab != 3}}">
-            <component id="me"></component>
+            <me />
         </view>
-        <component id="tab"></component>
+        <tab v-bind:active="currentTab" />
     </view>
 </template>
 
@@ -51,14 +51,9 @@
         methods = {
         };
 
-        changeTab (idx) {
-            this.currentTab = +idx;
-            this.$apply();
-        }
         onShow() {
             this.currentTab = 0;
             this.$invoke('message', 'loadMessage');
-            this.$invoke('tab', 'change', 0);
         }
     }
 </script>

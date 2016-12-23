@@ -63,9 +63,9 @@
             <image class="arrow_left" src="../images/arrow_left.png"></image>
         </view>
 
-        <component id="album" path="list"></component>
-        <component id="emoji" path="list"></component>
-        <component id="setting" path="list"></component>
+        <album v-bind:list="dAlbum"/>
+        <emoji v-bind:list="dSetting"/>
+        <setting v-bind:list="dEmoji"/>
     </view>
 </template>
 <script>
@@ -87,23 +87,23 @@
                 nickName: 'Gcaufy',
                 id: 'gcaufy',
                 avatarUrl: '../images/myheader.png',
-            }
+            },
+            dAlbum: [
+                {icon: '../images/album.png', title: '相册'},
+                {icon: '../images/collect.png', title: '收藏'},
+                {icon: '../images/wallet.png', title: '钱包'},
+                {icon: '../images/card.png', title: '卡包'},
+            ],
+            dSetting: [{id: 'clear', icon: '../images/setting.png', title: '清除本地聊天记录', action() {
+                this.clearHistory();
+            }}],
+            dEmoji: [{icon: '../images/emoji.png', title: '表情'}]
         };
 
         methods = {
         };
 
         onLoad () {
-            this.$invoke('album', 'load', [
-                {icon: '../images/album.png', title: '相册'},
-                {icon: '../images/collect.png', title: '收藏'},
-                {icon: '../images/wallet.png', title: '钱包'},
-                {icon: '../images/card.png', title: '卡包'},
-            ]);
-            this.$invoke('setting', 'load', [{id: 'clear', icon: '../images/setting.png', title: '清除本地聊天记录'}]);
-            this.$invoke('emoji', 'load', [{icon: '../images/emoji.png', title: '表情'}]);
-
-
             this.setUserInfo();
         }
 

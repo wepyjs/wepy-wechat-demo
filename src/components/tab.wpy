@@ -55,15 +55,17 @@
 
     export default class Tab extends wepy.component {
 
+        props = {
+            active: {}
+        };
         data = {
-            active: 0,
         };
 
         methods = {
             change (evt, idx) {
                 this.active = +idx;
 
-                this.$parent.changeTab(idx);
+                //this.$parent.changeTab(idx);
             }
         };
 
