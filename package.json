@@ -16,7 +16,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-1": "^6.16.0",
     "babel-runtime": "^6.18.0",
-    "wepy": "^1.3.3",
+    "wepy": "^1.3.6",
     "wepy-com-toast": "^1.0.0"
   },
   "devDependencies": {

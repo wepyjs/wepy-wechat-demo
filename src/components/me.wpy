@@ -63,9 +63,9 @@
             <image class="arrow_left" src="../images/arrow_left.png"></image>
         </view>
 
-        <album v-bind:list="dAlbum"/>
-        <emoji v-bind:list="dSetting"/>
-        <setting v-bind:list="dEmoji"/>
+        <album :list="dAlbum"/>
+        <emoji :list="dSetting"/>
+        <setting :list="dEmoji"/>
     </view>
 </template>
 <script>

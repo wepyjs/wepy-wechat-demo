@@ -56,7 +56,9 @@
     export default class Tab extends wepy.component {
 
         props = {
-            active: {}
+            active: {
+                twoWay: true
+            }
         };
         data = {
         };

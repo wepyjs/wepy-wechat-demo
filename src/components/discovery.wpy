@@ -9,10 +9,10 @@
 <template>
     <view class="discovery">
 
-        <moment v-bind:list="dMoment" />
-        <action v-bind:list="dShopping" />
-        <drift v-bind:list="dDrift" />
-        <shopping v-bind:list="dAction" />
+        <moment :list="dMoment" />
+        <action :list="dShopping" />
+        <drift :list="dDrift" />
+        <shopping :list="dAction" />
 
     </view>
 </template>

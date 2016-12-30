@@ -17,7 +17,7 @@
         <view class="tab_item tab_me" hidden="{{currentTab != 3}}">
             <me />
         </view>
-        <tab v-bind:active="currentTab" />
+        <tab :active.sync="currentTab" />
 
         <toast />
     </view>
