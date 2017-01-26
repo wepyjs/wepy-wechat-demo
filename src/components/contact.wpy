@@ -142,7 +142,7 @@
             total: 0,
         };
         methods = {
-            select (evt, id) {
+            select (id, evt) {
                 //console.log(`${id} is selected`);
                 wx.navigateTo({url: 'chat?id=' + id});
             }

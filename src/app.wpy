@@ -25,6 +25,12 @@ export default class extends wepy.app {
         }
     };
 
+    constructor () {
+        super();
+        this.use('promisify');
+        this.use('requestfix');
+    }
+
     globalData = {
         userInfo: null
     };

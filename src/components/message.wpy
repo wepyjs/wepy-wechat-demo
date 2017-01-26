@@ -43,7 +43,7 @@
 <template>
     <view class="message">
         <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
-            <view class="item" bindtap="select" data-wepy-params="{{item.id}}">
+            <view class="item" bindtap="select({{item.id}})">
                 <view class="header">
                     <image class="img" src="{{item.icon}}"></image>
                 </view>
@@ -67,7 +67,7 @@
         
 
         methods = {
-            select (evt, id) {
+            select (id, evt) {
                 wx.navigateTo({url: 'chat?id=' + id});
             }
         };

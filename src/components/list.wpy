@@ -34,7 +34,7 @@
 <template>
     <view class="list">
         <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
-            <view class="item" bindtap="click({{index}}, {{item.id}},{{item.title}})">
+            <view class="item" bindtap="click({{index}}, {{item}})">
                 <image class="icon" src="{{item.icon}}"></image>
                 <text class="title">{{item.title}}</text>
                 <image class="arrow_left" src="../images/arrow_left.png"></image>
@@ -54,12 +54,12 @@
         };
 
         methods = {
-            click (evt, index, id, name) {
-                console.log('index: ' + index + 'clicked: ' + name);
+            click (index, item, evt) {
+                console.log('index: ' + index + 'clicked: ' + item.title);
                 if (this.list[index].action)
                     this.list[index].action.call(this.$parent);
                 else {
-                    this.$root.showToast(name);
+                    this.$root.showToast(item.title);
                 }
             }
         };

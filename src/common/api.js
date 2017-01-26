@@ -3,6 +3,8 @@ import m_history from '../mocks/history';
 import m_reply from '../mocks/reply';
 import global from './global';
 
+import wepy from 'wepy';
+
 export default {
     getRandomReply (id) {
         let template = m_reply[id];
@@ -32,8 +34,8 @@ export default {
             if (cache) {
                 resolve(cache);
             } else {
-                wx.login().then((res) => {
-                    wx.getUserInfo().then((res) => {
+                wepy.login().then((res) => {
+                    wepy.getUserInfo().then((res) => {
                         console.log('getuserinfo success');
                         console.log(res)
                         global.setUserInfo(res.userInfo);
@@ -50,7 +52,7 @@ export default {
     // where h.from = :id or h.to = :id or :id = '';
     // order by h.time asc;
     getHistory (id) {
-        let history = wx.getStorageSync('_wechat_history_') || m_history;
+        let history = wepy.getStorageSync('_wechat_history_') || m_history;
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 let sorted = history.sort((a, b) => a.time - b.time);
@@ -69,7 +71,7 @@ export default {
     // where h.from = :id or h.to = :id or :id = '';
     // order by h.time desc;
     getMessageList () {
-        let history = wx.getStorageSync('_wechat_history_') || m_history;
+        let history = wepy.getStorageSync('_wechat_history_') || m_history;
         return new Promise((resolve, reject) => {
             let distince = [];
             let rst = [];
@@ -128,7 +130,7 @@ export default {
     },
 
     msg (frm, to, msg, type = 'text') {
-        let history = wx.getStorageSync('_wechat_history_') || m_history;
+        let history = wepy.getStorageSync('_wechat_history_') || m_history;
         let msgObj = {
             to: to,
             msg: msg,
@@ -140,14 +142,14 @@ export default {
         history.push(msgObj);
         
         return new Promise((resolve, reject) => {
-            wx.setStorage({key: '_wechat_history_', data: history}).then(() => {
+            wepy.setStorage({key: '_wechat_history_', data: history}).then(() => {
                 resolve(msgObj);
             }).catch(reject);
         });
     },
 
     clearMsg (id) {
-        return wx.clearStorage();
+        return wepy.clearStorage();
     }
 
 }
