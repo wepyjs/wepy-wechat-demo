@@ -84,7 +84,7 @@
 <template>
     <view class="contact">
         <view class="toplist">
-            <block wx:for="{{toplist}}" wx:for-index="index" wx:for-item="item">
+            <block wx:for="{{toplist}}" wx:key="index" wx:for-index="index" wx:for-item="item">
                 <view class="item">
                     <view class="header">
                         <image class="img" src="{{item.header}}" width="70rpx" height="70rpx"></image>
@@ -96,9 +96,9 @@
             </block>
         </view>
         <view class="friends">
-            <block wx:for="{{contacts}}" wx:for-index="alpha" wx:for-item="lists">
+            <block wx:for="{{contacts}}" wx:key="index" wx:for-index="alpha" wx:for-item="lists">
                 <view class="sep">{{alpha}}</view>
-                <block wx:for="{{lists}}" wx:for-index="index" wx:for-item="item">
+                <block wx:for="{{lists}}" wx:key="index" wx:for-index="index" wx:for-item="item">
                     <view class="user" data-wepy-params="{{item.id}}" bindtap="select">
                          <image src="{{item.icon}}" class="user_icon"></image>
                          <text class="user_name">{{item.name}}</text>

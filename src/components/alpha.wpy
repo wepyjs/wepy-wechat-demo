@@ -17,7 +17,7 @@
 </style>
 <template>
     <view class="alpha">
-        <block wx:for="{{tags}}" wx:for-index="index" wx:for-item="item">
+        <block wx:for="{{tags}}" wx:key="index" wx:for-index="index" wx:for-item="item">
             <text class="item">{{item}}</text>
         </block>
     </view>

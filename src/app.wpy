@@ -8,7 +8,7 @@ page, .body{
 <script>
 
 import wepy from 'wepy';
-import "babel-polyfill";
+import "wepy-async-function";
 
 export default class extends wepy.app {
 

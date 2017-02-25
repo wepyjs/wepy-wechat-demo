@@ -15,7 +15,6 @@ module.exports = {
             "plugins": [
                 "transform-export-extensions",
                 "syntax-export-extensions",
-                "transform-runtime"
             ]
         }
     }
@@ -25,7 +24,7 @@ module.exports = {
 if (prod) {
     // 压缩sass
     module.exports['sass'] = {"outputStyle": "compressed"};
-  
+
 
     // 压缩js
     module.exports.plugins = {

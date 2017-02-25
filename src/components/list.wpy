@@ -33,7 +33,7 @@
 </style>
 <template>
     <view class="list">
-        <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
+        <block wx:for="{{list}}" wx:key="index" wx:for-index="index" wx:for-item="item">
             <view class="item" bindtap="click({{index}}, {{item}})">
                 <image class="icon" src="{{item.icon}}"></image>
                 <text class="title">{{item.title}}</text>

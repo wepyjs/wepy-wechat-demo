@@ -42,7 +42,7 @@
 </style>
 <template>
     <view class="message">
-        <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item">
+        <block wx:for="{{list}}" wx:key="index" wx:for-index="index" wx:for-item="item">
             <view class="item" bindtap="select({{item.id}})">
                 <view class="header">
                     <image class="img" src="{{item.icon}}"></image>
