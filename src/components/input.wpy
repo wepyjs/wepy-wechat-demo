@@ -65,8 +65,8 @@
             <image class="input_icon voice" src="../images/voice.png"></image>
             <image class="input_icon face" src="../images/face.png"></image>
             <image class="input_icon plus" src="../images/plus.png"></image>
-            <view class="send{{readyToSend.length == 0 ? ' hidden' : ''}}" bindtap="send">发送</view>
-            <input bindinput="input" value="{{readyToSend}}" class="input_text{{focus ? ' focus' : ''}}" bindfocus="focus" bindblur="blur" bindtype="input"></input>
+            <view class="send{{readyToSend.length == 0 ? ' hidden' : ''}}" @tap="send">发送</view>
+            <input @input="input" value="{{readyToSend}}" class="input_text{{focus ? ' focus' : ''}}" @focus="focus" @blur="blur" @type="input"></input>
         </view>
     </view>
 </template>

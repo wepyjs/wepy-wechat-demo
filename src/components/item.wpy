@@ -1,5 +1,5 @@
 <template>
-    <view class="item" bindtap="click">
+    <view class="item" @tap="click">
         <image class="icon" src="{{item.icon}}"></image>
         <text class="title">{{item.title}}</text>
         <image class="arrow_left" src="../images/arrow_left.png"></image>

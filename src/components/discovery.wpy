@@ -21,7 +21,7 @@
                 <group :list="item"></group>
             </repeat>
             <!--block wx:for="{{list}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-                <view class="item" bindtap="click({{index}}, {{item}})">
+                <view class="item" @tap="click({{index}}, {{item}})">
                     <image class="icon" src="{{item.icon}}"></image>
                     <text class="title">{{item.title}}</text>
                     <image class="arrow_left" src="../images/arrow_left.png"></image>

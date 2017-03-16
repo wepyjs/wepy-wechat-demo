@@ -99,7 +99,7 @@
             <block wx:for="{{contacts}}" wx:key="index" wx:for-index="alpha" wx:for-item="lists">
                 <view class="sep">{{alpha}}</view>
                 <block wx:for="{{lists}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-                    <view class="user" data-wepy-params="{{item.id}}" bindtap="select">
+                    <view class="user" data-wepy-params="{{item.id}}" @tap="select">
                          <image src="{{item.icon}}" class="user_icon"></image>
                          <text class="user_name">{{item.name}}</text>
                     </view>
