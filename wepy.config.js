@@ -9,6 +9,7 @@ module.exports = {
           "outputStyle": "compressed"
         },
         babel: {
+            "sourceMap": true,
             "presets": [
                 "es2015",
                 "stage-1"
