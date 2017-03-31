@@ -12,15 +12,15 @@
 
         props = {
             item: {},
-            index: {}
+            index: {},
         }
 
         methods = {
             click (evt) {
                 console.log(`[clicked]GroupIndex:(${this.$parent.$index}) Index:(${this.$index}) Title:(${this.item.title})`);
-                if (this.item.action)
+                if (this.item.action) {
                     this.item.action.call(this.$parent);
-                else {
+                } else {
                     this.$root.showToast(this.item.title);
                 }
             }

@@ -66,8 +66,6 @@
         methods = {
             change (idx, evt) {
                 this.active = +idx;
-
-                //this.$parent.changeTab(idx);
             }
         };
 

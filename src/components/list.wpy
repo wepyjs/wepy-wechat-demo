@@ -56,9 +56,9 @@
         methods = {
             click (index, item, evt) {
                 console.log('index: ' + index + 'clicked: ' + item.title);
-                if (this.list[index].action)
+                if (this.list[index].action) {
                     this.list[index].action.call(this.$parent);
-                else {
+                } else {
                     this.$root.showToast(item.title);
                 }
             }

@@ -32,17 +32,16 @@
 <script>
     import wepy from 'wepy';
 
-    //import List from './list';
     import Group from './group';
 
     export default class Message extends wepy.component {
 
         components = {
-            /*moment: List,
+            /* moment: List,
             action: List,
             drift: List,
-            shopping: List,*/
-            group: Group,
+            shopping: List, */
+            group: Group
         };
         data = {
             dMoment: [{icon: '../images/moment.png', title: '朋友圈'}],
@@ -54,7 +53,7 @@
                 dMoment: [{icon: '../images/moment.png', title: '朋友圈'}],
                 dShopping: [{icon: '../images/shopping.png', title: '购物'}],
                 dDrift: [{icon: '../images/drift.png', title: '漂流瓶'}],
-                dAction: [{icon: '../images/scan.png', title: '扫一扫'}, {icon: '../images/shake.png', title: '摇一摇'}],
+                dAction: [{icon: '../images/scan.png', title: '扫一扫'}, {icon: '../images/shake.png', title: '摇一摇'}]
             }
         };
         methods = {

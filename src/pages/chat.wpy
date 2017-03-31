@@ -20,19 +20,18 @@
     import global from '../common/global';
 
     export default class Chat extends wepy.page {
-
         config = {
-            "navigationBarTitleText": "wepy - 微信",
-            "navigationBarTextStyle": "white",
-            "navigationBarBackgroundColor": "#3b3a40"
+            'navigationBarTitleText': 'wepy - 微信',
+            'navigationBarTextStyle': 'white',
+            'navigationBarBackgroundColor': '#3b3a40'
         };
         components = {
             input: Input,
-            chartboard: Chartboard,
+            chartboard: Chartboard
         };
 
         data = {
-            currentTab: 0,
+            currentTab: 0
         };
         methods = {
         };
@@ -44,12 +43,12 @@
         onLoad (p) {
             let contact = global.getContact(p.id);
             if (!contact) {
-                wx.navigateBack();
+                this.$back();
                 return;
             }
             wx.setNavigationBarTitle({title: contact.name});
 
             this.$invoke('chartboard', 'loadMessage', p.id);
-        }   
+        }
     }
 </script>

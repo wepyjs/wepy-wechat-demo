@@ -62,13 +62,12 @@
     export default class Message extends wepy.component {
 
         data = {
-            list: []
+            list: [],
         };
-        
 
         methods = {
             select (id, evt) {
-                wx.navigateTo({url: 'chat?id=' + id});
+                this.$root.$navigate({url: 'chat?id=' + id});
             }
         };
 

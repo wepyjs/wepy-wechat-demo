@@ -31,17 +31,15 @@
     import Me from '../components/me';
     import Tab from '../components/tab';
 
-
     import Toast from 'wepy-com-toast';
 
-
     export default class Index extends wepy.page {
-
         config = {
-            "navigationBarTitleText": "wepy - 微信",
-            "navigationBarTextStyle": "white",
-            "navigationBarBackgroundColor": "#3b3a40"
+            'navigationBarTitleText': 'wepy - 微信',
+            'navigationBarTextStyle': 'white',
+            'navigationBarBackgroundColor': '#3b3a40'
         };
+
         components = {
             message: Message,
             discovery: Discovery,
@@ -52,8 +50,9 @@
         };
 
         data = {
-            currentTab: 0,
+            currentTab: 0
         };
+
         methods = {
         };
 
@@ -62,12 +61,10 @@
             this.$invoke('message', 'loadMessage');
         }
 
-
         showToast(name) {
-
             let promise = this.$invoke('toast', 'show', {
                 title: `${name}`,
-                img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png',
+                img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
             });
 
             promise.then((d) => {

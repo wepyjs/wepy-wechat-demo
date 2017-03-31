@@ -90,13 +90,13 @@
             let userinfo, message;
             try {
                 userinfo = await api.getUserInfo();
-            } catch(e) {
+            } catch (e) {
                 console.log(e);
                 userinfo = {
                     nickName: 'Gcaufy',
                     id: 'gcaufy',
                     avatarUrl: '../images/myheader.png',
-                }
+                };
             }
             this.current = userinfo;
             try {
@@ -121,7 +121,6 @@
 
         async sendMessage (msg) {
             let id = this.to;
-            let contact = global.getContact(id);
             let msgObj = await api.sendMsg(id, msg);
 
             msgObj.name = this.current.nickName;

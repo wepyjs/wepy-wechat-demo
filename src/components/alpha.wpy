@@ -36,7 +36,7 @@
     export default class Message extends wepy.component {
 
         data = {
-            tags: table
+            tags: table,
         };
 
         methods = {

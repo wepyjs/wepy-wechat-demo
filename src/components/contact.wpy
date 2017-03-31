@@ -121,30 +121,34 @@
     export default class Message extends wepy.component {
 
         components = {
-            alpha: Alpha,
+            alpha: Alpha
         };
 
         data = {
-            toplist: [{
-                header: '../images/new_friend.png',
-                name: '新的朋友',
-            },{
-                header: '../images/group_chat.png',
-                name: '群聊',
-            },{
-                header: '../images/tag.png',
-                name: '标签',
-            },{
-                header: '../images/public.png',
-                name: '公众号',
-            },],
+            toplist: [
+                {
+                    header: '../images/new_friend.png',
+                    name: '新的朋友',
+                },
+                {
+                    header: '../images/group_chat.png',
+                    name: '群聊',
+                },
+                {
+                    header: '../images/tag.png',
+                    name: '标签',
+                },
+                {
+                    header: '../images/public.png',
+                    name: '公众号',
+                },
+            ],
             contacts: {},
             total: 0,
         };
         methods = {
             select (id, evt) {
-                //console.log(`${id} is selected`);
-                wx.navigateTo({url: 'chat?id=' + id});
+                this.$root.$navigate({url: 'chat?id=' + id});
             }
         };
 
@@ -153,7 +157,7 @@
         }
 
         format (arr) {
-            let obj = {}, c;
+            let c, obj = {};
             arr.forEach((item) => {
                 c = item.id[0].toUpperCase();
                 if (obj[c]) {

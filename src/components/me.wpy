@@ -86,7 +86,7 @@
             userInfo: {
                 nickName: 'Gcaufy',
                 id: 'gcaufy',
-                avatarUrl: '../images/myheader.png',
+                avatarUrl: '../images/myheader.png'
             },
             dAlbum: [
                 {icon: '../images/album.png', title: '相册'},
@@ -94,10 +94,17 @@
                 {icon: '../images/wallet.png', title: '钱包'},
                 {icon: '../images/card.png', title: '卡包'},
             ],
-            dSetting: [{id: 'clear', icon: '../images/setting.png', title: '清除本地聊天记录', action() {
-                this.clearHistory();
-            }}],
-            dEmoji: [{icon: '../images/emoji.png', title: '表情'}]
+            dSetting: [
+                {
+                    id: 'clear',
+                    icon: '../images/setting.png',
+                    title: '清除本地聊天记录',
+                    action() {
+                        this.clearHistory();
+                    }
+                }
+            ],
+            dEmoji: [{icon: '../images/emoji.png', title: '表情'}],
         };
 
         methods = {
@@ -119,10 +126,9 @@
             this.$apply();
         }
 
-
         async clearHistory (id) {
             await api.clearMsg(id);
-            wx.navigateTo({url: 'index'});
+            this.$root.$navigate({url: 'index'});
         }
     }
 </script>

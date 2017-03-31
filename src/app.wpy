@@ -1,27 +1,27 @@
-<style type="sass">
+<style type='sass'>
 page, .body{
     height: 100%;
-    font-family: "\5FAE\8F6F\96C5\9ED1", arial;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
 }
 </style>
 
 <script>
 
 import wepy from 'wepy';
-import "wepy-async-function";
+import 'wepy-async-function';
 
 export default class extends wepy.app {
 
     config = {
-        "pages":[
-            "pages/index",
-            "pages/chat"
+        'pages': [
+            'pages/index',
+            'pages/chat'
         ],
-        "window":{
-            "backgroundTextStyle": "light",
-            "navigationBarBackgroundColor": "#3b3a40",
-            "navigationBarTitleText": "WeChat",
-            "navigationBarTextStyle": "black"
+        'window': {
+            'backgroundTextStyle': 'light',
+            'navigationBarBackgroundColor': '#3b3a40',
+            'navigationBarTitleText': 'WeChat',
+            'navigationBarTextStyle': 'black'
         }
     };
 
@@ -42,7 +42,7 @@ export default class extends wepy.app {
         if (this.globalData.userInfo) {
             return this.globalData.userInfo;
         }
-        let x = await wx.login();
+        await wx.login();
         let res = await wx.getUserInfo();
         this.globalData.userInfo = res.userInfo;
         return res.userInfo;
