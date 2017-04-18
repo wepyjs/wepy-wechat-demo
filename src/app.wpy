@@ -1,7 +1,8 @@
 <style type='sass'>
-page, .body{
-    height: 100%;
-    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #f0eff5;
 }
 </style>
 

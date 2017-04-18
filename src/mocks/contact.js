@@ -1,3 +1,5 @@
+import wepy from 'wepy';
+
 let users = [
     {id: 'caixia', name: '彩霞'},
     {id: 'erkang', name: '尔康'},
@@ -38,7 +40,7 @@ let table = users.map((v) => {
     return {
         name: v.name,
         id: v.id,
-        icon: `/mocks/users/${v.id}.png`
+        icon: wepy.env === 'web' ? `./mocks/users/${v.id}.png` : `../mocks/users/${v.id}.png`
     };
 });
 export default table

@@ -26,7 +26,7 @@
                 width: 70rpx;
                 height: 70rpx;
             }
-            &.me {
+            &.fromme {
                 .msg {
                     background-color: #9fe757;
                     float: right;
@@ -54,7 +54,7 @@
 <template>
     <scroll-view scroll-y="1" class="chartboard{{focus ? ' fixed' : ''}}">
         <block wx:for="{{message}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-            <view class="msgarea{{item.from === 'me' ? ' me' : ' other'}}">
+            <view class="msgarea{{item.from === 'me' ? ' fromme' : ' other'}}">
                 <image class="icon" src="{{item.icon}}"></image>
                 <view class="msg">{{item.msg}}</view>
                 <view class="clearfix"></view>
@@ -95,7 +95,7 @@
                 userinfo = {
                     nickName: 'Gcaufy',
                     id: 'gcaufy',
-                    avatarUrl: '../images/myheader.png',
+                    avatarUrl: wepy.env === 'web' ? './images/myheader.png' : '../images/myheader.png',
                 };
             }
             this.current = userinfo;
@@ -128,7 +128,7 @@
             this.message.push(msgObj);
 
             this.$apply();
-            this.$invoke('../input', 'clear');
+            this.$invoke('../myinput', 'clear');
 
             let randomReply = await api.getRandomReply(id);
             this.replyMessage(randomReply);

@@ -10,6 +10,7 @@
         border-top: 1px solid #dad9d6;
         background-color: #f7f7f7;
         font-size: 24rpx;
+        white-space: nowrap;
         .tab_item {
             &.active {
                 color: $activecolor;

@@ -1,13 +1,18 @@
 <style type="sass">
-    .body{
+    .page_chat{
         height: 100%;
         background-color: #ededed;
     }
 </style>
 <template>
-    <view class="body">
-        <component id="chartboard"></component>
-        <component id="input"></component>
+    <view class="body page_chat">
+        <view>
+            <chartboard />
+        </view>
+
+        <view>
+            <myinput />
+        </view>
     </view>
 </template>
 
@@ -26,7 +31,7 @@
             'navigationBarBackgroundColor': '#3b3a40'
         };
         components = {
-            input: Input,
+            myinput: Input,
             chartboard: Chartboard
         };
 

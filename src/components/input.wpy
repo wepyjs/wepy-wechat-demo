@@ -66,7 +66,7 @@
             <image class="input_icon face" src="../images/face.png"></image>
             <image class="input_icon plus" src="../images/plus.png"></image>
             <view class="send{{readyToSend.length == 0 ? ' hidden' : ''}}" @tap="send">发送</view>
-            <input @input="input" value="{{readyToSend}}" class="input_text{{focus ? ' focus' : ''}}" @focus="focus" @blur="blur" @type="input"></input>
+            <input @input="input" value="{{readyToSend}}" class="input_text{{focusFlag ? ' focusFlag' : ''}}" @focus="focus" @blur="blur" @type="input"></input>
         </view>
     </view>
 </template>
@@ -76,7 +76,7 @@
     export default class Input extends wepy.component {
 
         data = {
-            focus: false,
+            focusFlag: false,
             readyToSend: ''
         };
 
@@ -90,12 +90,12 @@
                 this.readyToSend = evt.detail.value;
             },
             focus (evt) {
-                this.focus = true;
-                this.$invoke('../chartboard', 'fixPosition', this.focus);
+                this.focusFlag = true;
+                this.$invoke('../chartboard', 'fixPosition', this.focusFlag);
             },
             blur (evt) {
-                this.focus = false;
-                this.$invoke('../chartboard', 'fixPosition', this.focus);
+                this.focusFlag = false;
+                this.$invoke('../chartboard', 'fixPosition', this.focusFlag);
             },
             clear () {
                 this.readyToSend = '';

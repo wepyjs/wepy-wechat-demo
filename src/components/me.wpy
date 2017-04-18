@@ -86,13 +86,13 @@
             userInfo: {
                 nickName: 'Gcaufy',
                 id: 'gcaufy',
-                avatarUrl: '../images/myheader.png'
+                avatarUrl: wepy.env === 'web' ? './images/myheader.png' : '../images/myheader.png'
             },
             dAlbum: [
-                {icon: '../images/album.png', title: '相册'},
-                {icon: '../images/collect.png', title: '收藏'},
-                {icon: '../images/wallet.png', title: '钱包'},
-                {icon: '../images/card.png', title: '卡包'},
+                {icon: wepy.env === 'web' ? './images/album.png' : '../images/album.png', title: '相册'},
+                {icon: wepy.env === 'web' ? './images/collect.png' : '../images/collect.png', title: '收藏'},
+                {icon: wepy.env === 'web' ? './images/wallet.png' : '../images/wallet.png', title: '钱包'},
+                {icon: wepy.env === 'web' ? './images/card.png' : '../images/card.png', title: '卡包'},
             ],
             dSetting: [
                 {
@@ -104,7 +104,7 @@
                     }
                 }
             ],
-            dEmoji: [{icon: '../images/emoji.png', title: '表情'}],
+            dEmoji: [{icon: wepy.env === 'web' ? './images/emoji.png' : '../images/emoji.png', title: '表情'}],
         };
 
         methods = {

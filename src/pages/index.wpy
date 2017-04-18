@@ -1,12 +1,17 @@
 <style type="sass">
-    .tab_item {
-        height: 100%;
-    }
+.tab_item {
+    height: 100%;
+}
+page, .body{
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #f0eff5;
+}
 </style>
 <template>
     <view class="body">
         <view class="tab_item tab_message" hidden="{{currentTab != 0}}">
-            <component id="message"></component>
+            <message />
         </view>
         <view class="tab_item tab_contact" hidden="{{currentTab != 1}}">
             <contact />
@@ -17,9 +22,13 @@
         <view class="tab_item tab_me" hidden="{{currentTab != 3}}">
             <me />
         </view>
-        <tab :active.sync="currentTab" />
 
-        <toast />
+        <view>
+            <tab :active.sync="currentTab" />
+        </view>
+        <view>
+            <toast />
+        </view>
     </view>
 </template>
 

@@ -38,6 +38,7 @@
             padding-left: 20rpx;
             padding-right: 20rpx;
             padding-bottom: 100rpx;
+            background: white;
             .sep {
                 background-color: #f1f0f6;
                 color: #7e7d83;
@@ -99,7 +100,7 @@
             <block wx:for="{{contacts}}" wx:key="index" wx:for-index="alpha" wx:for-item="lists">
                 <view class="sep">{{alpha}}</view>
                 <block wx:for="{{lists}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-                    <view class="user" data-wepy-params="{{item.id}}" @tap="select">
+                    <view class="user" @tap="select({{item.id}})">
                          <image src="{{item.icon}}" class="user_icon"></image>
                          <text class="user_name">{{item.name}}</text>
                     </view>
@@ -127,19 +128,19 @@
         data = {
             toplist: [
                 {
-                    header: '../images/new_friend.png',
+                    header: wepy.env === 'web' ? './images/new_friend.png' : '../images/new_friend.png',
                     name: '新的朋友',
                 },
                 {
-                    header: '../images/group_chat.png',
+                    header: wepy.env === 'web' ? './images/group_chat.png' : '../images/group_chat.png',
                     name: '群聊',
                 },
                 {
-                    header: '../images/tag.png',
+                    header: wepy.env === 'web' ? './images/tag.png' : '../images/tag.png',
                     name: '标签',
                 },
                 {
-                    header: '../images/public.png',
+                    header: wepy.env === 'web' ? './images/public.png' : '../images/public.png',
                     name: '公众号',
                 },
             ],

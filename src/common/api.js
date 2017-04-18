@@ -12,12 +12,12 @@ export default {
             template = m_reply['other'];
 
         let index = Math.random() * template.length >> 0;
-        
+
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(template[index]);
             });
-        }); 
+        });
 
     },
     getContact () {
@@ -25,7 +25,7 @@ export default {
             setTimeout(() => {
                 resolve(m_contacts);
             });
-        }); 
+        });
     },
 
     getUserInfo () {
@@ -46,9 +46,9 @@ export default {
         });
     },
 
-    // select * from history h 
-    // left join contact c 
-    // on (h.from == c.id or h.to == c.id) 
+    // select * from history h
+    // left join contact c
+    // on (h.from == c.id or h.to == c.id)
     // where h.from = :id or h.to = :id or :id = '';
     // order by h.time asc;
     getHistory (id) {
@@ -64,10 +64,10 @@ export default {
             });
         });
     },
-    // select *, (select msg from history h2 where h2.from = c.id or h2.to = c.id order by time desc limit 1) as lastmsg 
-    // from history h 
-    // left join contact c 
-    // on (h.from == c.id or h.to == c.id) 
+    // select *, (select msg from history h2 where h2.from = c.id or h2.to = c.id order by time desc limit 1) as lastmsg
+    // from history h
+    // left join contact c
+    // on (h.from == c.id or h.to == c.id)
     // where h.from = :id or h.to = :id or :id = '';
     // order by h.time desc;
     getMessageList () {
@@ -113,7 +113,7 @@ export default {
             if (v.id) {
                 if (v.id !== 'me') {
                     v.name = contactObj[v.id].name;
-                    v.icon = '../mocks/users/' + contactObj[v.id].id + '.png';
+                    v.icon = (wepy.env === 'web' ? './mocks/users/' : '../mocks/users/') + contactObj[v.id].id + '.png';
                 }
                 rst.push(v);
             }
@@ -140,7 +140,7 @@ export default {
         };
 
         history.push(msgObj);
-        
+
         return new Promise((resolve, reject) => {
             wepy.setStorage({key: '_wechat_history_', data: history}).then(() => {
                 resolve(msgObj);
