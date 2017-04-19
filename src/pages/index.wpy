@@ -23,12 +23,8 @@ page, .body{
             <me />
         </view>
 
-        <view>
-            <tab :active.sync="currentTab" />
-        </view>
-        <view>
-            <toast />
-        </view>
+        <tab :active.sync="currentTab" />
+        <toast />
     </view>
 </template>
 

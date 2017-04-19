@@ -6,13 +6,8 @@
 </style>
 <template>
     <view class="body page_chat">
-        <view>
-            <chartboard />
-        </view>
-
-        <view>
-            <myinput />
-        </view>
+        <chartboard />
+        <myinput />
     </view>
 </template>
 
