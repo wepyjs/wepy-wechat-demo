@@ -30,7 +30,7 @@ module.exports = {
 };
 
 
-if (true || prod) {
+if (prod) {
 
   delete module.exports.compilers.babel.sourcesMap;
   // 压缩sass
