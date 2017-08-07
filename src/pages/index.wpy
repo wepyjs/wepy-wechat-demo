@@ -1,4 +1,4 @@
-<style type="sass">
+<style type="scss">
 .tab_item {
     height: 100%;
 }

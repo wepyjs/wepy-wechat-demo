@@ -1,4 +1,4 @@
-<style type="sass">
+<style type="scss">
     $bgcolor: #f0eff5;
     .me {
         background-color: $bgcolor;

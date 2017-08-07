@@ -1,4 +1,4 @@
-<style type="sass">
+<style type="scss">
     $fontcolor: #7b7b7b;
     $activecolor: #13b113;
     .message {

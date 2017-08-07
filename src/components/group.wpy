@@ -1,4 +1,4 @@
-<style type="sass">
+<style type="scss">
     $border: 1px solid #eeeeee;
     .list {
         margin-top: 40rpx;

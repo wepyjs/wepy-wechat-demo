@@ -1,4 +1,4 @@
-<style type='sass'>
+<style type='scss'>
 body {
     margin: 0px;
     padding: 0px;
