@@ -1,0 +1,3 @@
+@import "./../components/chartboard.acss";
+@import "./../components/input.acss";
+.page_chat{height:100%;background-color:#ededed}

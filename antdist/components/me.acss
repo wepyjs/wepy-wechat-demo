@@ -1,0 +1,4 @@
+@import "./list.acss";
+@import "./list.acss";
+@import "./list.acss";
+.me{background-color:#f0eff5;height:100%;padding-top:40rpx}.me .item{background-color:#fff;height:100rpx;position:relative;box-sizing:border-box;padding:15rpx 25rpx;border-bottom:1px solid #eeeeee}.me .item.info{height:160rpx;position:relative}.me .item.info .me_icon{width:130rpx;height:130rpx;margin-left:0rpx;border-radius:10rpx;position:absolute}.me .item.info .qr_code{position:absolute;right:60rpx;width:50rpx;height:50rpx;margin-top:-65rpx}.me .item.info .arrow_left{position:absolute;right:20rpx;width:30rpx;height:40rpx;margin-top:-60rpx}.me .item.info .wechat_info{padding-left:150rpx;padding-top:25rpx}.me .item.info .wechat_info .wechat_name{font-size:32rpx}.me .item.info .wechat_info .wechat_id{margin-top:20rpx;color:#333;font-size:26rpx}

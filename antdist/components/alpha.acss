@@ -1,0 +1,1 @@
+.alpha{position:fixed;right:10rpx;width:30rpx;top:100rpx}.alpha .item{display:block;font-size:22rpx;color:#333;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;padding:2rpx}

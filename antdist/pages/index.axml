@@ -1,0 +1,155 @@
+
+    <view class="body">
+        <view class="tab_item tab_message" hidden="{{currentTab != 0}}">
+            
+    <view class="message">
+        <block  a:for="{{$message$list}}" a:key="index" a:for-index="index" a:for-item="item">
+            <view class="item" onTap="$message$select" data-wepy-params-a="{{item.id}}">
+                <view class="header">
+                    <image class="img" src="{{item.icon}}"/>
+                </view>
+                <view class="content">
+                    <view class="name">{{item.name}}</view>
+                    <view class="lastmsg">{{item.lastmsg}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+
+        </view>
+        <view class="tab_item tab_contact" hidden="{{currentTab != 1}}">
+            
+    <view class="contact">
+        <view class="toplist">
+            <block  a:for="{{$contact$toplist}}" a:key="index" a:for-index="index" a:for-item="item">
+                <view class="item">
+                    <view class="header">
+                        <image class="img" src="{{item.header}}" width="70rpx" height="70rpx"/>
+                    </view>
+                    <view class="content">
+                        <view class="name">{{item.name}}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        
+    <view class="alpha">
+        <block  a:for="{{$contact$alpha$tags}}" a:key="index" a:for-index="index" a:for-item="item">
+            <text class="item">{{item}}</text>
+        </block>
+    </view>
+
+    </view>
+
+        </view>
+        <view class="tab_item tab_discovery" hidden="{{currentTab != 2}}">
+            
+    <view class="discovery">
+
+        <!--
+        <moment v-bind:list.once="dMoment" />
+        <action v-bind:list.once="dShopping" />
+        <drift v-bind:list.once="dDrift" />
+        <shopping v-bind:list.once="dAction" />
+        -->
+
+
+    </view>
+
+            </block>
+            <!--block a:for="{{list}}" a:key="index" a:for-index="index" a:for-item="item">
+                <view class="item" onTap="click({{index}}, {{item}})">
+                    <image class="icon" src="{{item.icon}}"></image>
+                    <text class="title">{{item.title}}</text>
+                    <image class="arrow_left" src="../images/arrow_left.png"></image>
+                </view>
+            </block-->
+    </view>
+
+        </view>
+        <view class="tab_item tab_me" hidden="{{currentTab != 3}}">
+            
+    <view class="me">
+        <view class="info item">
+            <image class="me_icon" src="{{$me$userInfo.avatarUrl}}"/>
+            <view class="wechat_info">
+                <view class="wechat_name">{{$me$userInfo.nickName}}</view>
+                <view class="wechat_id">微信号：{{$me$userInfo.id}}</view>
+            </view>
+            <image class="qr_code" src="../images/qr_code.png"/>
+            <image class="arrow_left" src="../images/arrow_left.png"/>
+        </view>
+
+        
+    <view class="list">
+        <block  a:for="{{$me$album$list}}" a:key="index" a:for-index="index" a:for-item="item">
+            <view class="item" onTap="$me$album$click" data-wepy-params-a="{{index}}" data-wepy-params-b="{{item}}">
+                <image class="icon" src="{{item.icon}}"/>
+                <text class="title">{{item.title}}</text>
+                <image class="arrow_left" src="../images/arrow_left.png"/>
+            </view>
+        </block>
+    </view>
+
+        
+    <view class="list">
+        <block  a:for="{{$me$emoji$list}}" a:key="index" a:for-index="index" a:for-item="item">
+            <view class="item" onTap="$me$emoji$click" data-wepy-params-a="{{index}}" data-wepy-params-b="{{item}}">
+                <image class="icon" src="{{item.icon}}"/>
+                <text class="title">{{item.title}}</text>
+                <image class="arrow_left" src="../images/arrow_left.png"/>
+            </view>
+        </block>
+    </view>
+
+        
+    <view class="list">
+        <block  a:for="{{$me$setting$list}}" a:key="index" a:for-index="index" a:for-item="item">
+            <view class="item" onTap="$me$setting$click" data-wepy-params-a="{{index}}" data-wepy-params-b="{{item}}">
+                <image class="icon" src="{{item.icon}}"/>
+                <text class="title">{{item.title}}</text>
+                <image class="arrow_left" src="../images/arrow_left.png"/>
+            </view>
+        </block>
+    </view>
+
+    </view>
+
+        </view>
+
+        
+    <view class="tab">
+        <view class="tab_item tab_message{{$tab$active == 0 ? ' active' : ''}}" onTap="$tab$change" data-wepy-params-a="0">
+            <image class="icon" src="../images/message{{$tab$active == 0 ? '_active' : ''}}.png"/>
+            <text class="title">微信</text>
+        </view>
+        <view class="tab_item tab_contact{{$tab$active == 1 ? ' active' : ''}}" onTap="$tab$change" data-wepy-params-a="1">
+            <image class="icon" src="../images/contact{{$tab$active == 1 ? '_active' : ''}}.png"/>
+            <text class="title">通讯录</text>
+        </view>
+        <view class="tab_item tab_discovery{{$tab$active == 2 ? ' active' : ''}}" onTap="$tab$change" data-wepy-params-a="2">
+            <image class="icon" src="../images/discovery{{$tab$active == 2 ? '_active' : ''}}.png"/>
+            <text class="title">发现</text>
+        </view>
+        <view class="tab_item tab_me{{$tab$active == 3 ? ' active' : ''}}" onTap="$tab$change" data-wepy-params-a="3">
+            <image class="icon" src="../images/me{{$tab$active == 3 ? '_active' : ''}}.png"/>
+            <text class="title">我</text>
+        </view>
+    </view>
+
+        
+    <view class="wetoast {{$toast$reveal ? 'wetoast_show' : ''}}">
+        <view class="wetoast__mask"/>
+        <view class="wetoast__bd" animation="{{$toast$animationData}}">
+            <block  a:if="{{$toast$img}}">
+                <view class="wetoast__bd__img {{$toast$imgClassName || ''}}">
+                    <image class="wetoast__bd__img_desc" src="{{$toast$img}}" mode="{{$toast$imgMode || 'scaleToFill'}}"/>
+                </view>
+            </block>
+            <block  a:if="{{$toast$title}}">
+                <view class="wetoast__bd__title {{$toast$titleClassName || ''}}">{{$toast$title}}</view>
+            </block>
+        </view>
+    </view>
+
+    </view>
