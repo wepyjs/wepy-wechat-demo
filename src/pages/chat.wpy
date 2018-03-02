@@ -26,8 +26,8 @@
             'navigationBarBackgroundColor': '#3b3a40'
         };
         components = {
-            myinput: Input,
-            chartboard: Chartboard
+            '@myinput': Input,
+            '@chartboard': Chartboard
         };
 
         data = {

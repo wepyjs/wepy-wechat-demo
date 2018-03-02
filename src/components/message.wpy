@@ -67,7 +67,7 @@
 
         methods = {
             select (id, evt) {
-                this.$root.$navigate({url: 'chat?id=' + id});
+                this.$parent.$navigate({url: 'chat?id=' + id});
             }
         };
 

@@ -23,7 +23,7 @@ page, .body{
             <me />
         </view>
 
-        <tab :active.sync="currentTab" />
+        <tab :active.sync="currentTab" @changeTab="change" />
         <toast />
     </view>
 </template>
@@ -46,12 +46,12 @@ page, .body{
         };
 
         components = {
-            message: Message,
-            discovery: Discovery,
-            me: Me,
-            contact: Contact,
-            tab: Tab,
-            toast: Toast
+            '@message': Message,
+            '@discovery': Discovery,
+            '@me': Me,
+            '@contact': Contact,
+            '@tab': Tab,
+            '@toast': Toast
         };
 
         data = {
@@ -59,6 +59,9 @@ page, .body{
         };
 
         methods = {
+            change (tab) {
+                this.currentTab = tab;
+            } 
         };
 
         onShow() {
@@ -70,10 +73,6 @@ page, .body{
             let promise = this.$invoke('toast', 'show', {
                 title: `${name}`,
                 img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-            });
-
-            promise.then((d) => {
-                console.log('toast done');
             });
         }
     }

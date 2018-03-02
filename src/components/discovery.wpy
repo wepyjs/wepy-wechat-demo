@@ -37,11 +37,7 @@
     export default class Message extends wepy.component {
 
         components = {
-            /* moment: List,
-            action: List,
-            drift: List,
-            shopping: List, */
-            group: Group
+            '@group': Group
         };
         data = {
             dMoment: [{icon: wepy.env === 'web' ? './images/moment.png' : '../images/moment.png', title: '朋友圈'}],

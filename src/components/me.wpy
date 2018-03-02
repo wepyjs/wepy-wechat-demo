@@ -77,9 +77,9 @@
     export default class Me extends wepy.component {
 
         components = {
-            album: List,
-            emoji: List,
-            setting: List,
+            '@album': List,
+            '@emoji': List,
+            '@setting': List,
         }
 
         data = {

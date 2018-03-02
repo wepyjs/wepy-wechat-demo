@@ -58,6 +58,7 @@
 
         props = {
             active: {
+                type: Number,
                 twoWay: true
             }
         };
@@ -67,6 +68,7 @@
         methods = {
             change (idx, evt) {
                 this.active = +idx;
+                this.$emit('changeTab', this.active);
             }
         };
 
