@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "wepy": "^1.5.8",
+    "wepy": "^1.7.2",
     "wepy-async-function": "^1.4.4",
     "wepy-com-toast": "^1.0.1",
     "wepy-web": "0.0.11"
