@@ -31,9 +31,7 @@ _wepy2.default.component({
     },
 
     attached: function attached() {},
-    created: function created() {
-        debugger;
-    },
+    created: function created() {},
 
 
     methods: {

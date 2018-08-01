@@ -109,7 +109,6 @@ _wepy2.default.component({
 
     methods: {
         test: function test() {
-            debugger;
             this.dSetting[0].id = Math.random();
             this.dSetting = this.dSetting;
         },

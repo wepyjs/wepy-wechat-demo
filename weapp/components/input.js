@@ -40,9 +40,7 @@ _wepy2.default.component({
         }
     },
 
-    created: function created() {
-        debugger;
-    }
+    created: function created() {}
 }, {info: {"components":{},"on":{},"model":{"type":"input","expr":"readyToSend"}}, handlers: [{tap: function proxyHandlerWithEvent ($event) {
     var _vm=this;
       return (function () {

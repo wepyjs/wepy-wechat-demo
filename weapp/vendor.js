@@ -385,6 +385,14 @@ function hasOwn (obj, key) {
 function noop (a, b, c) {}
 
 /**
+ * Check if val is a valid array index.
+ */
+function isValidArrayIndex (val) {
+  var n = parseFloat(String(val));
+  return n >= 0 && Math.floor(n) === n && isFinite(val)
+}
+
+/**
  * Convert an Array-lik object to a real Array
  */
 function toArray (list, start) {
@@ -657,6 +665,96 @@ function nextTick (cb, ctx) {
       _resolve = resolve;
     })
   }
+}
+
+/**
+ * Parse a v-model expression into a base path and a final key segment.
+ * Handles both dot-path and possible square brackets.
+ *
+ * Possible cases:
+ *
+ * - test
+ * - test[key]
+ * - test[test1[key]]
+ * - test["a"][key]
+ * - xxx.test[a[a].test1[key]]
+ * - test.xxx.a["asa"][test1[key]]
+ *
+ */
+function parseModel (str) {
+  str = str.trim();
+  var len = str.length;
+
+  // e.g.
+  // test[0].a
+  // test.a.b
+  if (str.indexOf('[') < 0 || str.lastIndexOf(']') < len - 1) {
+    var dot = str.lastIndexOf('.');
+    if (dot > -1) {
+      return {
+        expr: str.slice(0, dot),
+        key: ("\"" + (str.slice(dot + 1)) + "\"")
+      };
+    } else {
+      return {
+        expr: str,
+        key: null
+      };
+    }
+  }
+
+  /*
+   * e.g.
+   * test[a[b]]
+   */
+
+  var index = 0;
+  var exprStart = 0;
+  var exprEnd = 0;
+
+  var isQuoteStart = function (chr) {
+    return chr === 0x22 || chr === 0x27;
+  };
+
+  var parseString = function (chr) {
+    while (index < len && str.charCodeAt(++index) !== chr) {}
+  };
+
+  var parseBracket = function (chr) {
+    var inBracket = 1;
+    exprStart = index;
+    while (index < len) {
+      chr = str.charCodeAt(++index);
+      if (isQuoteStart(chr)) {
+        parseString(chr);
+        continue;
+      }
+      if (chr === 0x5B)
+        { inBracket++; }
+      if (chr === 0x5D)
+        { inBracket--; }
+
+      if (inBracket === 0) {
+        exprEnd = index;
+        break;
+      }
+
+    }
+  };
+
+  while (index < len) {
+    var chr = str.charCodeAt(++index);
+    if (isQuoteStart(chr)) {
+      parseString(chr);
+    } else if (chr === 0x5B) {
+      parseBracket(chr);
+    }
+  }
+
+  return {
+    expr: str.slice(0, exprStart),
+    key: str.slice(exprStart + 1, exprEnd)
+  };
 }
 
 /**
@@ -1019,6 +1117,38 @@ function defineReactive (ref) {
       dep.notify();
     }
   });
+}
+
+/**
+ * Set a property on an object. Adds the new property and
+ * triggers change notification if the property doesn't
+ * already exist.
+ */
+function set (vm, target, key, val) {
+  if (Array.isArray(target) && isValidArrayIndex(key)) {
+    target.length = Math.max(target.length, key);
+    target.splice(key, 1, val);
+    return val
+  }
+  if (key in target && !(key in Object.prototype)) {
+    target[key] = val;
+    return val
+  }
+  var ob = (target).__ob__;
+  if (target._isVue || (ob && ob.vmCount)) {
+    "development" !== 'production' && warn(
+      'Avoid adding reactive properties to a Vue instance or its root $data ' +
+      'at runtime - declare it upfront in the data option.'
+    );
+    return val
+  }
+  if (!ob) {
+    target[key] = val;
+    return val
+  }
+  defineReactive({ vm: vm,  obj: ob.value, key: key, value: val });
+  ob.dep.notify();
+  return val
 }
 
 /**
@@ -1516,6 +1646,10 @@ var Base = function Base () {
 
 };
 
+Base.prototype.$set = function $set (target, key, val) {
+  return set(this, target, key, val);
+};
+
 Base.prototype.$on = function $on (event, fn) {
     var this$1 = this;
 
@@ -1642,11 +1776,14 @@ var WepyPage = (function (Base$$1) {
       }
       if (paramsStr)
         { url = url + '?' + paramsStr; }
+
+      url = { url: url };
     } else {
+       // TODO: { url: './a?a=1&b=2' }
     }
 
     var fn = wx[type + 'To'];
-    fn && fn({ url: url });
+    fn && fn(url);
   };
 
   return WepyPage;
@@ -1863,8 +2000,12 @@ var Event = function Event (e) {
 };
 
 var modelHandler = function (vm, model, e) {
-  // TODO: support test.abc & test[0]["abc"]
-  vm[model.expr] = e.detail.value;
+  var parsed = parseModel(model.expr);
+  if (parsed.key === null) {
+    vm[parsed.expr] = e.detail.value;
+  } else {
+    vm.$set(parsed.expr, parsed.key, e.detail.value);
+  }
 };
 
 var proxyHandler = function (e) {
