@@ -1,5 +1,5 @@
 {
-	"description": "项目配置文件。",
+	"description": "WePY 2.0 demo",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
@@ -10,8 +10,8 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
 	"appid": "touristappid",
-	"projectname": "wepy-wechat-demo",
-	"miniprogramRoot": "./dist",
+	"projectname": "wepy-wechat-demo - v2.0",
+	"miniprogramRoot": "./weapp",
 	"condition": {
 		"search": {
 			"current": -1,

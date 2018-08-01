@@ -1,0 +1,19 @@
+
+<view class="tab">
+    <view bindtap="_proxy" data-wpy-evt="0" class="tab_item tab_message {{ [ active == 0 ? 'active' : '' ] }}">
+        <image src="../images/message{{active == 0 ? '_active' : ''}}.png" class="icon"></image>
+        <label class="title">微信</label>
+    </view>
+    <view bindtap="_proxy" data-wpy-evt="1" class="tab_item tab_contact{{active == 1 ? ' active' : ''}}">
+        <image src="../images/contact{{active == 1 ? '_active' : ''}}.png" class="icon"></image>
+        <label class="title">通讯录</label>
+    </view>
+    <view bindtap="_proxy" data-wpy-evt="2" class="tab_item tab_discovery{{active == 2 ? ' active' : ''}}">
+        <image src="../images/discovery{{active == 2 ? '_active' : ''}}.png" class="icon"></image>
+        <label class="title">发现</label>
+    </view>
+    <view bindtap="_proxy" data-wpy-evt="3" class="tab_item tab_me{{active == 3 ? ' active' : ''}}">
+        <image src="../images/me{{active == 3 ? '_active' : ''}}.png" class="icon"></image>
+        <label class="title">我</label>
+    </view>
+</view>

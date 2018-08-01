@@ -1,0 +1,6 @@
+
+.page_chat{
+    height: 100%;
+    background-color: #ededed;
+}
+

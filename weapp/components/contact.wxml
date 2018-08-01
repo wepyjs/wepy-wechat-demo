@@ -1,0 +1,28 @@
+
+<view class="contact">
+    <view class="toplist">
+        <view wx:for="{{ toplist }}" wx:for-index="index" wx:for-item="item" wx:key="index">
+            <view class="item">
+                <view class="header">
+                    <image src="{{item.header}}" width="70rpx" height="70rpx" class="img"></image>
+                </view>
+                <view class="content">
+                    <view class="name">{{item.name}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="friends">
+        <view wx:for="{{ contacts }}" wx:for-index="alpha" wx:for-item="lists" wx:key="alpha">
+            <view class="sep">{{alpha}}</view>
+            <view wx:for="{{ lists }}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                <view data-wpytap-a="{{ item }}" bindtap="_proxy" data-wpy-evt="0" class="user">
+                     <image src="{{item.icon}}" class="user_icon"></image>
+                     <text class="user_name">{{item.name}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="total">{{total}}位联系人</view>
+    </view>
+    <alpha bind_init="_initComponent">
+</alpha></view>

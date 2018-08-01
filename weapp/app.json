@@ -1,0 +1,14 @@
+{
+    "pages": [
+        "pages/index",
+        "pages/chat"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#3b3a40",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "component": true,
+    "usingComponents": {}
+}

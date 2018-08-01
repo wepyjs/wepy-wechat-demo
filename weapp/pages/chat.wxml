@@ -1,0 +1,5 @@
+
+<view class="body page_chat">
+    <chartboard itemid="{{ itemid }}" bind_init="_initComponent"></chartboard>
+    <myinput bind_init="_initComponent"></myinput>
+</view>

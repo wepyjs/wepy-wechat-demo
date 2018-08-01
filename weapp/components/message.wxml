@@ -1,0 +1,14 @@
+
+<view class="message">
+    <view wx:for="{{ list }}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        <view data-wpytap-a="{{ item }}" data-wpytap-b="{{ $event }}" bindtap="_proxy" data-wpy-evt="0" class="item">
+            <view class="header">
+                <image src="{{item.icon}}" class="img"></image>
+            </view>
+            <view class="content">
+                <view class="name">{{item.name}}</view>
+                <view class="lastmsg">{{item.lastmsg}}</view>
+            </view>
+        </view>
+    </view>
+</view>

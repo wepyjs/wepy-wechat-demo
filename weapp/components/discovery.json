@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "group": "./group"
+    },
+    "component": true
+}

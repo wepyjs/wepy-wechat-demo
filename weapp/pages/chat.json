@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "wepy - 微信",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#3b3a40",
+    "usingComponents": {
+        "chartboard": "../components/chartboard",
+        "myinput": "../components/input"
+    },
+    "component": true
+}

@@ -1,0 +1,16 @@
+
+<view class="me">
+    <view data-wpytap-a="{{ $event }}" bindtap="_proxy" data-wpy-evt="0" class="info item">
+        <image src="{{userInfo.avatarUrl}}" class="me_icon"></image>
+        <view class="wechat_info">
+            <view class="wechat_name">{{userInfo.nickName}}</view>
+            <view class="wechat_id">微信号：{{userInfo.id}}</view>
+        </view>
+        <image src="../images/qr_code.png" class="qr_code"></image>
+        <image src="../images/arrow_left.png" class="arrow_left"></image>
+    </view>
+
+    <list list="{{ dAlbum }}" bind_init="_initComponent"></list>
+    <list list="{{ dSetting }}" bind_init="_initComponent"></list>
+    <list list="{{ dEmoji }}" bind_init="_initComponent"></list>
+</view>

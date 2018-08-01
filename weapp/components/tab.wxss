@@ -1,0 +1,2 @@
+.tab{color:#7b7b7b;position:fixed;bottom:0;height:100rpx;width:100%;border-top:1px solid #dad9d6;background-color:#f7f7f7;font-size:24rpx;white-space:nowrap}.tab .tab_item{display:inline-block;width:25%;text-align:center}.tab .tab_item.active{color:#13b113}.tab .icon{width:60rpx;height:60rpx;display:block;margin:auto}.tab .title{padding-top:6rpx;display:block}
+

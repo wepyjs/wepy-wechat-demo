@@ -1,0 +1,14 @@
+
+<view class="body">
+    <message wx:if="{{ currentTab === 0 }}" bind_init="_initComponent"></message>
+
+    <contact wx:if="{{ currentTab === 1 }}" bind_init="_initComponent"></contact>
+
+    <discovery wx:if="{{ currentTab === 2 }}" bind_init="_initComponent"></discovery>
+
+    <me wx:if="{{ currentTab === 3 }}" bind_init="_initComponent"></me>
+
+    <tab active="{{ currentTab }}" bind_init="_initComponent">
+
+    <toast>
+</toast></tab></view>

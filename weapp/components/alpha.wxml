@@ -1,0 +1,6 @@
+
+<view class="alpha">
+    <view wx:for="{{ tags }}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        <text class="item">{{item}}</text>
+    </view>
+</view>

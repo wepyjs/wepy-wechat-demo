@@ -1,0 +1,10 @@
+
+<scroll-view scroll-y="1" class="chartboard{{focus ? ' fixed' : ''}}">
+    <view wx:for="{{ message }}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        <view class="msgarea{{item.from === 'me' ? ' fromme' : ' other'}}">
+            <image src="{{item.icon}}" class="icon"></image>
+            <view class="msg">{{item.msg}}</view>
+            <view class="clearfix"></view>
+        </view>
+    </view>
+</scroll-view>
