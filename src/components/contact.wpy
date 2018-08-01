@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $fontcolor: #7b7b7b;
     $activecolor: #13b113;
     .contact {
@@ -83,47 +83,43 @@
     }
 </style>
 <template>
-    <view class="contact">
-        <view class="toplist">
-            <block wx:for="{{toplist}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-                <view class="item">
-                    <view class="header">
+    <div class="contact">
+        <div class="toplist">
+            <div v-for="(item, index) in toplist">
+                <div class="item">
+                    <div class="header">
                         <image class="img" src="{{item.header}}" width="70rpx" height="70rpx"></image>
-                    </view>
-                    <view class="content">
-                        <view class="name">{{item.name}}</view>
-                    </view>
-                </view>
-            </block>
-        </view>
-        <view class="friends">
-            <block wx:for="{{contacts}}" wx:key="index" wx:for-index="alpha" wx:for-item="lists">
-                <view class="sep">{{alpha}}</view>
-                <block wx:for="{{lists}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-                    <view class="user" @tap="select({{item.id}})">
+                    </div>
+                    <div class="content">
+                        <div class="name">{{item.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="friends">
+            <div v-for="(lists, alpha) in contacts">
+                <div class="sep">{{alpha}}</div>
+                <div v-for="(item, index) in lists">
+                    <div class="user" @tap="select(item.id)">
                          <image src="{{item.icon}}" class="user_icon"></image>
                          <text class="user_name">{{item.name}}</text>
-                    </view>
-                </block>
-            </block>
-            <view class="total">{{total}}位联系人</view>
-        </view>
+                    </div>
+                </div>
+            </div>
+            <div class="total">{{total}}位联系人</div>
+        </div>
         <alpha />
-    </view>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
-    import Alpha from './alpha';
+    //import Alpha from './alpha';
     import api from '../common/api';
     import global from '../common/global';
 
-    export default class Message extends wepy.component {
+    wepy.component({
 
-        components = {
-            alpha: Alpha
-        };
-
-        data = {
+        data: {
             toplist: [
                 {
                     header: wepy.env === 'web' ? './images/new_friend.png' : '../images/new_friend.png',
@@ -144,45 +140,48 @@
             ],
             contacts: {},
             total: 0,
-        };
-        methods = {
+        },
+        methods: {
             select (id, evt) {
                 this.$root.$navigate({url: 'chat?id=' + id});
-            }
-        };
+            },
+            loadContact () {
+                let contacts;
+                let contactObj = {};
 
-        onLoad () {
+                api.getContact().then(contacts => {
+                    contacts.forEach(v => {
+                        contactObj[v.id] = v;
+                    });
+                    global.setContact(contactObj);
+
+                    this.total = contacts.length;
+                    this.contacts = this.format(contacts);
+                });
+            },
+            format (arr) {
+                let c, obj = {};
+                arr.forEach((item) => {
+                    c = item.id[0].toUpperCase();
+                    if (obj[c]) {
+                        obj[c].push(item);
+                    } else {
+                        obj[c] = [item];
+                    }
+                });
+                return obj;
+            }
+        },
+
+        created () {
             this.loadContact();
         }
-
-        format (arr) {
-            let c, obj = {};
-            arr.forEach((item) => {
-                c = item.id[0].toUpperCase();
-                if (obj[c]) {
-                    obj[c].push(item);
-                } else {
-                    obj[c] = [item];
-                }
-            });
-            return obj;
-        }
-
-        async loadContact () {
-            let contacts;
-            let contactObj = {};
-
-            contacts = await api.getContact();
-
-            contacts.forEach((v) => {
-                contactObj[v.id] = v;
-            });
-
-            global.setContact(contactObj);
-
-            this.total = contacts.length;
-            this.contacts = this.format(contacts);
-            this.$apply();
-        }
-    }
+    });
 </script>
+<config>
+{
+  usingComponents: {
+    'alpha': './alpha',
+  }
+}
+</config>

@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $fontcolor: #7b7b7b;
     $activecolor: #13b113;
     .input {
@@ -60,49 +60,54 @@
     }
 </style>
 <template>
-    <view class="input">
-        <view class="input_layout">
+    <div class="input">
+        <div class="input_layout">
             <image class="input_icon voice" src="../images/voice.png"></image>
             <image class="input_icon face" src="../images/face.png"></image>
             <image class="input_icon plus" src="../images/plus.png"></image>
-            <view class="send{{readyToSend.length == 0 ? ' hidden' : ''}}" @tap="send">发送</view>
-            <input @input="input" value="{{readyToSend}}" class="input_text{{focusFlag ? ' focusFlag' : ''}}" @focus="focus" @blur="blur" @type="input"></input>
-        </view>
-    </view>
+            <div class="send{{readyToSend.length == 0 ? ' hidden' : ''}}" @tap="send">发送</div>
+            <input v-model="readyToSend" class="input_text{{focusFlag ? ' focusFlag' : ''}}" @focus="focus" @blur="blur" @type="input" />
+        </div>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
 
-    export default class Input extends wepy.component {
+    wepy.component({
 
-        data = {
+        data: {
+            test: '123',
             focusFlag: false,
             readyToSend: ''
-        };
-
-        methods = {
+        },
+        
+        watch: {
+            readyToSend: function (newv, oldv) {
+                console.log(`Input value changed, new value is: "${newv}", old value is: "${oldv}"`);
+            }
+        },
+        methods: {
             send (evt) {
                 if (this.readyToSend) {
-                    this.$invoke('../chartboard', 'sendMessage', this.readyToSend);
+                    let board = this.$parent.$children[0];
+                    board.sendMessage(this.readyToSend);
+                    this.readyToSend = '';
                 }
-            },
-            input (evt) {
-                this.readyToSend = evt.detail.value;
             },
             focus (evt) {
                 this.focusFlag = true;
-                this.$invoke('../chartboard', 'fixPosition', this.focusFlag);
+                //this.$invoke('../chartboard', 'fixPosition', this.focusFlag);
             },
             blur (evt) {
                 this.focusFlag = false;
-                this.$invoke('../chartboard', 'fixPosition', this.focusFlag);
+                //this.$invoke('../chartboard', 'fixPosition', this.focusFlag);
             },
             clear () {
                 this.readyToSend = '';
             }
-        };
+        },
 
-        onLoad () {
+        created () {
         }
-    }
+    });
 </script>

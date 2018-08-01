@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $fontcolor: #7b7b7b;
     $activecolor: #13b113;
     .message {
@@ -41,40 +41,43 @@
     }
 </style>
 <template>
-    <view class="message">
-        <block wx:for="{{list}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-            <view class="item" @tap="select({{item.id}})">
-                <view class="header">
+    <div class="message">
+        <div v-for="(item, index) in list">
+            <div class="item" @tap="select(item.id, $event)">
+                <div class="header">
                     <image class="img" src="{{item.icon}}"></image>
-                </view>
-                <view class="content">
-                    <view class="name">{{item.name}}</view>
-                    <view class="lastmsg">{{item.lastmsg}}</view>
-                </view>
-            </view>
-        </block>
-    </view>
+                </div>
+                <div class="content">
+                    <div class="name">{{item.name}}</div>
+                    <div class="lastmsg">{{item.lastmsg}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
     import api from '../common/api';
 
-    export default class Message extends wepy.component {
-
-        data = {
+    wepy.component({
+        data: {
             list: [],
-        };
+        },
 
-        methods = {
+        methods: {
             select (id, evt) {
-                this.$root.$navigate({url: 'chat?id=' + id});
+                this.$root.$navigate({url: 'chat?itemid=' + id});
             }
-        };
-
-        async loadMessage () {
+        },
+        created: function () {
+            api.getMessageList().then(list => {
+                this.list = list;
+            });
+        }
+        /*
+        async function loadMessage () {
             this.list = await api.getMessageList();
             this.$apply();
-        }
-
-    }
+        }*/
+    });
 </script>

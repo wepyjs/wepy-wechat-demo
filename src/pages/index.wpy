@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
 .tab_item {
     height: 100%;
 }
@@ -10,61 +10,52 @@ page, .body{
 </style>
 <template>
     <view class="body">
-        <view class="tab_item tab_message" hidden="{{currentTab != 0}}">
-            <message />
-        </view>
-        <view class="tab_item tab_contact" hidden="{{currentTab != 1}}">
-            <contact />
-        </view>
-        <view class="tab_item tab_discovery" hidden="{{currentTab != 2}}">
-            <discovery />
-        </view>
-        <view class="tab_item tab_me" hidden="{{currentTab != 3}}">
-            <me />
-        </view>
+        <message v-if="currentTab === 0"></message>
 
-        <tab :active.sync="currentTab" />
+        <contact v-if="currentTab === 1"></contact>
+
+        <discovery v-if="currentTab === 2"></discovery>
+
+        <me v-if="currentTab === 3"></me>
+
+        <tab :active.sync="currentTab" @changetab="change" />
+
         <toast />
     </view>
 </template>
 
 <script>
     import wepy from 'wepy';
-    import Message from '../components/message';
-    import Discovery from '../components/discovery';
-    import Contact from '../components/contact';
-    import Me from '../components/me';
-    import Tab from '../components/tab';
+    //import Message from '../components/message';
+    //import Discovery from '../components/discovery';
+    //import Contact from '../components/contact';
+    //import Me from '../components/me';
+    //import Tab from '../components/tab';
 
-    import Toast from 'wepy-com-toast';
+    //import Toast from 'wepy-com-toast';
 
-    export default class Index extends wepy.page {
-        config = {
+    wepy.page({
+        config: {
             'navigationBarTitleText': 'wepy - 微信',
             'navigationBarTextStyle': 'white',
             'navigationBarBackgroundColor': '#3b3a40'
-        };
+        },
 
-        components = {
-            message: Message,
-            discovery: Discovery,
-            me: Me,
-            contact: Contact,
-            tab: Tab,
-            toast: Toast
-        };
-
-        data = {
+        data : {
             currentTab: 0
-        };
+        },
 
-        methods = {
-        };
+        methods : {
+          change: function (index) {
+            this.currentTab = index;
+            console.log('tab click: ' + index);
+          }
+        },
 
         onShow() {
             this.currentTab = 0;
             this.$invoke('message', 'loadMessage');
-        }
+        },
 
         showToast(name) {
             let promise = this.$invoke('toast', 'show', {
@@ -76,5 +67,19 @@ page, .body{
                 console.log('toast done');
             });
         }
-    }
+    });
 </script>
+<config>
+{
+  'navigationBarTitleText': 'wepy - 微信',
+  'navigationBarTextStyle': 'white',
+  'navigationBarBackgroundColor': '#3b3a40',
+  usingComponents: {
+    'tab': '../components/tab',
+    'message': '../components/message',
+    'discovery': '../components/discovery',
+    'contact': '../components/contact',
+    'me': '../components/me'
+  }
+}
+</config>

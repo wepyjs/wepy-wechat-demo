@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $bgcolor: #f0eff5;
     .discovery {
         background-color: $bgcolor;
@@ -7,43 +7,27 @@
     }
 </style>
 <template>
-    <view class="discovery">
-
-        <!--
-        <moment :list="dMoment" />
-        <action :list="dShopping" />
-        <drift :list="dDrift" />
-        <shopping :list="dAction" />
-        -->
-
-
-            <repeat for="{{list}}" key="index" index="index" item="item">
-                <group :list="item"></group>
-            </repeat>
-            <!--block wx:for="{{list}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-                <view class="item" @tap="click({{index}}, {{item}})">
-                    <image class="icon" src="{{item.icon}}"></image>
-                    <text class="title">{{item.title}}</text>
-                    <image class="arrow_left" src="../images/arrow_left.png"></image>
-                </view>
-            </block-->
-    </view>
+    <div class="discovery">
+        <div v-for="list">
+            <group :list="item"></group>
+        </div>      
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
 
-    import Group from './group';
+    // import Group from './group';
 
-    export default class Message extends wepy.component {
+     wepy.component({
 
-        components = {
+        components: {
             /* moment: List,
             action: List,
             drift: List,
             shopping: List, */
-            group: Group
-        };
-        data = {
+            // group: Group
+        },
+        data: {
             dMoment: [{icon: wepy.env === 'web' ? './images/moment.png' : '../images/moment.png', title: '朋友圈'}],
             dShopping: [{icon: wepy.env === 'web' ? './images/shopping.png' : '../images/shopping.png', title: '购物'}],
             dDrift: [{icon: wepy.env === 'web' ? './images/drift.png' : '../images/drift.png', title: '漂流瓶'}],
@@ -55,11 +39,18 @@
                 dDrift: [{icon: wepy.env === 'web' ? './images/drift.png' : '../images/drift.png', title: '漂流瓶'}],
                 dAction: [{icon: wepy.env === 'web' ? './images/scan.png' : '../images/scan.png', title: '扫一扫'}, {icon: wepy.env === 'web' ? './images/shake.png' : '../images/shake.png', title: '摇一摇'}]
             }
-        };
-        methods = {
-        };
+        },
+        methods: {
+        },
 
         onLoad () {
         }
-    }
+    });
 </script>
+<config>
+{
+  usingComponents: {
+    'group': './group',
+  }
+}
+</config>

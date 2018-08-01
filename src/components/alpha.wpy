@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $fontcolor: #7b7b7b;
     $activecolor: #13b113;
     .alpha {
@@ -16,11 +16,11 @@
     }
 </style>
 <template>
-    <view class="alpha">
-        <block wx:for="{{tags}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+    <div class="alpha">
+        <div v-for="(item, index) in tags">
             <text class="item">{{item}}</text>
-        </block>
-    </view>
+        </div>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
@@ -33,16 +33,14 @@
     }
     table.push('#');
 
-    export default class Message extends wepy.component {
+    wepy.component({
 
-        data = {
+        data: {
             tags: table,
-        };
+        },
 
-        methods = {
-        };
-
-        onLoad () {
+        methods: {
         }
-    }
+
+    });
 </script>

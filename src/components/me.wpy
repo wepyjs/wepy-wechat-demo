@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $bgcolor: #f0eff5;
     .me {
         background-color: $bgcolor;
@@ -52,37 +52,36 @@
     }
 </style>
 <template>
-    <view class="me">
-        <view class="info item">
+    <div class="me">
+        <div class="info item" @tap="test">
             <image class="me_icon" src="{{userInfo.avatarUrl}}"></image>
-            <view class="wechat_info">
-                <view class="wechat_name">{{userInfo.nickName}}</view>
-                <view class="wechat_id">微信号：{{userInfo.id}}</view>
-            </view>
+            <div class="wechat_info">
+                <div class="wechat_name">{{userInfo.nickName}}</div>
+                <div class="wechat_id">微信号：{{userInfo.id}}</div>
+            </div>
             <image class="qr_code" src="../images/qr_code.png"></image>
             <image class="arrow_left" src="../images/arrow_left.png"></image>
-        </view>
+        </div>
 
-        <album :list="dAlbum"/>
-        <emoji :list="dSetting"/>
-        <setting :list="dEmoji"/>
-    </view>
+        <list :list="dAlbum"></list>
+        <list :list="dSetting"></list>
+        <list :list="dEmoji"></list>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
 
-    import List from './list';
     import api from '../common/api';
 
-    export default class Me extends wepy.component {
-
-        components = {
+    wepy.component({
+/*
+        components: {
             album: List,
             emoji: List,
             setting: List,
-        }
-
-        data = {
+        },
+*/
+        data: {
             userInfo: {
                 nickName: 'Gcaufy',
                 id: 'gcaufy',
@@ -105,30 +104,34 @@
                 }
             ],
             dEmoji: [{icon: wepy.env === 'web' ? './images/emoji.png' : '../images/emoji.png', title: '表情'}],
-        };
+        },
 
-        methods = {
-        };
-
-        onLoad () {
+        methods: {
+            test () {
+                this.dSetting[0].id = Math.random();
+                this.dSetting = this.dSetting;
+            },
+          setUserInfo () {
+            let res;
+            api.getUserInfo().then(res => {
+                ['nickName', 'avatarUrl'].forEach((v) => this.userInfo[v] = res[v]);
+            });
+          },
+          clearHistory (id) {
+              api.clearMsg(id).then(() => {
+                  this.$root.$navigate('index');
+              });
+          }
+        },
+        created () {
             this.setUserInfo();
         }
-
-        async setUserInfo() {
-            let res;
-            try {
-                res = await api.getUserInfo();
-            } catch (e) {
-                res = this.userInfo;
-            }
-
-            ['nickName', 'avatarUrl'].forEach((v) => this.userInfo[v] = res[v]);
-            this.$apply();
-        }
-
-        async clearHistory (id) {
-            await api.clearMsg(id);
-            this.$root.$navigate({url: 'index'});
-        }
-    }
-</script>
+    });
+</script> 
+<config>
+{
+  usingComponents: {
+    'list': './list',
+  }
+}
+</config>

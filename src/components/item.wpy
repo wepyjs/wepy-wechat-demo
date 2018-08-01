@@ -1,29 +1,58 @@
+<style lang="scss">
+$border: 1px solid #eeeeee;
+.item {
+    height: 100rpx;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20rpx;
+    border-bottom: $border;
+    .icon {
+        width: 60rpx;
+        height: 60rpx;
+        position: absolute;
+        margin-left: 15rpx;
+    }
+    .arrow_left {
+        position: absolute;
+        right: 20rpx;
+        width: 30rpx;
+        height: 40rpx;
+        margin-top: -32rpx;
+    }
+    .title {
+        padding: 18rpx 0 0 100rpx;
+        display: block;
+        font-size: 33rpx;
+    }
+}
+</style>
 <template>
-    <view class="item" @tap="click">
+    <div class="item" @tap="click(item, $event)">
         <image class="icon" src="{{item.icon}}"></image>
         <text class="title">{{item.title}}</text>
         <image class="arrow_left" src="../images/arrow_left.png"></image>
-    </view>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
 
-    export default class Item extends wepy.component {
+    wepy.component({
 
-        props = {
+        props: {
             item: {},
             index: {},
-        }
+        },
 
-        methods = {
-            click (evt) {
-                console.log(`[clicked]GroupIndex:(${this.$parent.$index}) Index:(${this.$index}) Title:(${this.item.title})`);
+        methods: {
+            click (item, evt) {
+                console.log('Group->Item|clicked: ' + item.title);
+                return;
                 if (this.item.action) {
                     this.item.action.call(this.$parent);
                 } else {
                     this.$root.showToast(this.item.title);
                 }
             }
-        };
-    }
+        }
+    })
 </script>

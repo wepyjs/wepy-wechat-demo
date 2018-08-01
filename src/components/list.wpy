@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $border: 1px solid #eeeeee;
     .list {
         margin-top: 40rpx;
@@ -32,44 +32,47 @@
     }
 </style>
 <template>
-    <view class="list">
-        <block wx:for="{{list}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-            <view class="item" @tap="click({{index}}, {{item}})">
+    <div class="list">
+        <div v-for="(item, index) in list">
+            <div class="item" @tap="click(index, item, $event)">
                 <image class="icon" src="{{item.icon}}"></image>
-                <text class="title">{{item.title}}</text>
+                <span class="title">{{item.title}}</span>
                 <image class="arrow_left" src="../images/arrow_left.png"></image>
-            </view>
-        </block>
-    </view>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
 
-    export default class List extends wepy.component {
+    wepy.component({
 
-        props = {
+        props: {
             list: {}
-        }
-        data = {
-        };
+        },
+        data: {
+        },
 
-        methods = {
+        methods: {
             click (index, item, evt) {
                 console.log('index: ' + index + 'clicked: ' + item.title);
                 if (this.list[index].action) {
                     this.list[index].action.call(this.$parent);
                 } else {
-                    this.$root.showToast(item.title);
+                    //this.$root.showToast(item.title);
                 }
             }
-        };
+        },
 
-        onLoad () {
-        }
+        created () {
+            setTimeout(() => {
+                console.log(this.list);
+            }, 1000);
+        },
 
         load(list) {
             this.list = list;
             this.$apply();
         }
-    }
+    });
 </script>

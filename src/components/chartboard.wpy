@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $fontcolor: #7b7b7b;
     $activecolor: #13b113;
     .chartboard {
@@ -53,13 +53,13 @@
 </style>
 <template>
     <scroll-view scroll-y="1" class="chartboard{{focus ? ' fixed' : ''}}">
-        <block wx:for="{{message}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-            <view class="msgarea{{item.from === 'me' ? ' fromme' : ' other'}}">
+        <div v-for="(item, index) in message">
+            <div class="msgarea{{item.from === 'me' ? ' fromme' : ' other'}}">
                 <image class="icon" src="{{item.icon}}"></image>
-                <view class="msg">{{item.msg}}</view>
-                <view class="clearfix"></view>
-            </view>
-        </block>
+                <div class="msg">{{item.msg}}</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </scroll-view>
 </template>
 <script>
@@ -68,81 +68,75 @@
     import api from '../common/api';
     import global from '../common/global';
 
-    export default class Chartboard extends wepy.component {
+    wepy.component({
 
-        data = {
+        props: ['itemid'],
+
+        data: {
             message: [],
             focus: false,
-        };
+        },
 
-        methods = {
-        };
+        watch: {
+            itemid: function (newval, oldval) {
+                console.log('Load message from id "' + newval + '"');
+                this.loadMessage(newval);
+            }
+        },
 
-        onLoad () {
-        }
+        attached () {
+        },
+
+        created () {
+        },
+
+        methods: {
+            loadMessage (id) {
+                let userinfo, message;
+                api.getUserInfo().then(userinfo => {
+                    this.current = userinfo;
+                    api.getHistory(id).then(message => {
+                        this.message = message;
+                        this.to = id;
+                        this.message.forEach(msg => {
+                            if (msg.from === 'me') {
+                                msg.name = userinfo.nickName;
+                                msg.icon = userinfo.avatarUrl;
+                            }
+                        });
+                    });
+                });
+            },
+            sendMessage (msg) {
+                let id = this.to;
+                api.sendMsg(id, msg).then(msgObj => {
+                    msgObj.name = this.current.nickName;
+                    msgObj.icon = this.current.avatarUrl;
+                    this.message.push(msgObj);
+
+                    api.getRandomReply(id).then(reply => {
+                        this.replyMessage(reply);
+                    });
+                });
+            },
+
+            replyMessage (msg) {
+                let id = this.to;
+                let contact = global.getContact(id);
+                api.replyMsg(id, msg).then(msgObj => {
+                    msgObj.name = contact.name;
+                    msgObj.icon = contact.icon;
+                    this.message.push(msgObj);
+                })
+            }
+        },
+
+
 
         fixPosition (focus) {
             this.focus = focus;
             this.$apply();
-        }
+        },
 
-        async loadMessage (id) {
-            let userinfo, message;
-            try {
-                userinfo = await api.getUserInfo();
-            } catch (e) {
-                console.log(e);
-                userinfo = {
-                    nickName: 'Gcaufy',
-                    id: 'gcaufy',
-                    avatarUrl: wepy.env === 'web' ? './images/myheader.png' : '../images/myheader.png',
-                };
-            }
-            this.current = userinfo;
-            try {
-                message = await api.getHistory(id);
-            } catch (e) {
-                message = null;
-                console.error('getHistory fail');
-                console.log(e);
-            }
-            if (message) {
-                this.message = message;
-                this.to = id;
-                this.message.forEach((msg) => {
-                    if (msg.from === 'me') {
-                        msg.name = userinfo.nickName;
-                        msg.icon = userinfo.avatarUrl;
-                    }
-                });
-                this.$apply();
-            }
-        }
-
-        async sendMessage (msg) {
-            let id = this.to;
-            let msgObj = await api.sendMsg(id, msg);
-
-            msgObj.name = this.current.nickName;
-            msgObj.icon = this.current.avatarUrl;
-            this.message.push(msgObj);
-
-            this.$apply();
-            this.$invoke('../myinput', 'clear');
-
-            let randomReply = await api.getRandomReply(id);
-            this.replyMessage(randomReply);
-        }
-
-        async replyMessage (msg) {
-            let id = this.to;
-            let contact = global.getContact(id);
-            let msgObj = await api.replyMsg(id, msg);
-            msgObj.name = contact.name;
-            msgObj.icon = contact.icon;
-
-            this.message.push(msgObj);
-            this.$apply();
-        }
-    }
+    });
 </script>

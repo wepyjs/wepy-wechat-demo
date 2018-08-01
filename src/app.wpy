@@ -1,8 +1,14 @@
-<style type='scss'>
+<style lang='scss'>
 body {
     margin: 0px;
     padding: 0px;
     background-color: #f0eff5;
+}
+page {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
 </style>
 
@@ -10,10 +16,13 @@ body {
 
 import wepy from 'wepy';
 import 'wepy-async-function';
+import promisify from '@wepy/use-promisify';
 
-export default class extends wepy.app {
+wepy.use(promisify, wepy);
 
-    config = {
+wepy.app({
+
+    config: {
         'pages': [
             'pages/index',
             'pages/chat'
@@ -24,20 +33,14 @@ export default class extends wepy.app {
             'navigationBarTitleText': 'WeChat',
             'navigationBarTextStyle': 'black'
         }
-    };
+    },
 
-    constructor () {
-        super();
-        this.use('promisify');
-        this.use('requestfix');
-    }
-
-    globalData = {
+    globalData:{
         userInfo: null
-    };
+    },
 
     onLaunch() {
-    }
+    },
 
     async getUserInfo() {
         if (this.globalData.userInfo) {
@@ -48,5 +51,19 @@ export default class extends wepy.app {
         this.globalData.userInfo = res.userInfo;
         return res.userInfo;
     }
-}
+});
 </script>
+<config>
+{
+  'pages': [
+    'pages/index',
+    'pages/chat'
+  ],
+  'window': {
+    'backgroundTextStyle': 'light',
+    'navigationBarBackgroundColor': '#3b3a40',
+    'navigationBarTitleText': 'WeChat',
+    'navigationBarTextStyle': 'black'
+  }
+}
+</config>

@@ -1,4 +1,4 @@
-<style type="scss">
+<style lang="scss">
     $border: 1px solid #eeeeee;
     .list {
         margin-top: 40rpx;
@@ -32,26 +32,33 @@
     }
 </style>
 <template>
-    <view class="list">
-        <repeat for="{{list}}" item="item" index="index" key="key">
+    <div class="list">
+        <div v-for="list">
             <item :item="item" :index="index"></item>
-        </repeat>
-    </view>
+        </div>
+    </div>
 </template>
 <script>
     import wepy from 'wepy';
 
-    import Item from './item';
+    //import Item from './item';
 
-    export default class Group extends wepy.component {
+    wepy.component({
 
-        props = {
+        props: {
             list: {}
+        },
+
+        components: {
+            //item: Item
         }
 
-        components = {
-            item: Item
-        };
-
-    }
+    })
 </script>
+<config>
+{
+  usingComponents: {
+    'item': './item',
+  }
+}
+</config>
