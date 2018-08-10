@@ -4,6 +4,10 @@ let prod = process.env.NODE_ENV === 'production';
 module.exports = {
   eslint: true,
   wpyExt: ".wpy",
+  static: [
+    'src/images',
+    'src/mocks/users'
+  ],
   build: {
     web: {
       htmlTemplate: path.join('src', 'index.template.html'),
