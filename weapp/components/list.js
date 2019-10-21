@@ -34,7 +34,7 @@ _core["default"].component({
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.click(index, item, $event);
+        _vm.click(index, item, $event)
       })();
     
   }}}, models: {} });

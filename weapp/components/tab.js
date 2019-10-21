@@ -22,28 +22,28 @@ _core["default"].component({
     
     var _vm=this;
       return (function () {
-        _vm.change(0);
+        _vm.change(0)
       })();
     
   }},'8-1': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
-        _vm.change(1);
+        _vm.change(1)
       })();
     
   }},'8-2': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
-        _vm.change(2);
+        _vm.change(2)
       })();
     
   }},'8-3': {"tap": function proxy () {
     
     var _vm=this;
       return (function () {
-        _vm.change(3);
+        _vm.change(3)
       })();
     
   }}}, models: {} });

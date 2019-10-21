@@ -34,7 +34,7 @@ _core["default"].component({
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.select(item.id, $event);
+        _vm.select(item.id, $event)
       })();
     
   }}}, models: {} });

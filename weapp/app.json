@@ -8,6 +8,5 @@
         "navigationBarBackgroundColor": "#3b3a40",
         "navigationBarTitleText": "WeChat",
         "navigationBarTextStyle": "black"
-    },
-    "usingComponents": {}
+    }
 }

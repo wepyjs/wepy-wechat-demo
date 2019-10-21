@@ -72,7 +72,7 @@ _core["default"].component({
     
     var _vm=this;
       return (function () {
-        _vm.select(item.id);
+        _vm.select(item.id)
       })();
     
   }}}, models: {} });

@@ -42,7 +42,7 @@ _core["default"].page({
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.change($event);
+        _vm.change($event)
       })();
     
   }}}, models: {} });

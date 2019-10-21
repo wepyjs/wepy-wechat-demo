@@ -77,7 +77,7 @@ _core["default"].component({
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.test($event);
+        _vm.test($event)
       })();
     
   }}}, models: {} });

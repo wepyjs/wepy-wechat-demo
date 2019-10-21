@@ -38,28 +38,28 @@ _core["default"].component({
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.send($event);
+        _vm.send($event)
       })();
     
   }},'14-1': {"focus": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.focus($event);
+        _vm.focus($event)
       })();
     
   }, "blur": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.blur($event);
+        _vm.blur($event)
       })();
     
   }, "type": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {
-        _vm.input($event);
+        _vm.input($event)
       })();
     
   }}}, models: {'0': {
