@@ -1,6 +1,6 @@
 {
+    "component": true,
     "usingComponents": {
-        "alpha": "./alpha"
-    },
-    "component": true
+        "alpha": "alpha"
+    }
 }

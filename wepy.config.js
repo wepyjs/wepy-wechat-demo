@@ -9,11 +9,6 @@ module.exports = {
     'src/mocks/users'
   ],
   build: {
-    web: {
-      htmlTemplate: path.join('src', 'index.template.html'),
-      htmlOutput: path.join('web', 'index.html'),
-      jsOutput: path.join('web', 'index.js')
-    }
   },
   compilers: {
     sass: {
@@ -22,12 +17,10 @@ module.exports = {
     babel: {
       sourceMap: true,
       presets: [
-        "es2015",
-        "stage-1"
+        '@babel/preset-env'
       ],
       plugins: [
-        "transform-export-extensions",
-        "syntax-export-extensions"
+        '@wepy/babel-plugin-import-regenerator'
       ]
     }
   }

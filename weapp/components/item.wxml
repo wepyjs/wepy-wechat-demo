@@ -1,5 +1,5 @@
 
-<view data-wpytap-a="{{ $event }}" bindtap="_proxy" data-wpy-evt="0" class="item">
+<view data-wpy-evt="26-0" bindtap="_proxy" class="item">
     <image src="{{item.icon}}" class="icon"></image>
     <text class="title">{{item.title}}</text>
     <image src="../images/arrow_left.png" class="arrow_left"></image>

@@ -63,7 +63,7 @@
     </scroll-view>
 </template>
 <script>
-    import wepy from 'wepy';
+    import wepy from '@wepy/core';
 
     import api from '../common/api';
     import global from '../common/global';

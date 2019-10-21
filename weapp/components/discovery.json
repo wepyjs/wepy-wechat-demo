@@ -1,6 +1,6 @@
 {
+    "component": true,
     "usingComponents": {
-        "group": "./group"
-    },
-    "component": true
+        "group": "group"
+    }
 }

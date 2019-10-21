@@ -9,6 +9,5 @@
         "navigationBarTitleText": "WeChat",
         "navigationBarTextStyle": "black"
     },
-    "component": true,
     "usingComponents": {}
 }

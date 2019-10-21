@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-    import wepy from 'wepy';
+    import wepy from '@wepy/core';
 
     let l = 26;
     let table = ['★'];

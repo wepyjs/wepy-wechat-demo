@@ -25,7 +25,7 @@ page, .body{
 </template>
 
 <script>
-    import wepy from 'wepy';
+    import wepy from '@wepy/core';
     //import Message from '../components/message';
     //import Discovery from '../components/discovery';
     //import Contact from '../components/contact';

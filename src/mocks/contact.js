@@ -1,4 +1,4 @@
-import wepy from 'wepy';
+import wepy from '@wepy/core';
 
 let users = [
     {id: 'caixia', name: '彩霞'},

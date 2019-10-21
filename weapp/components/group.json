@@ -1,6 +1,6 @@
 {
+    "component": true,
     "usingComponents": {
-        "item": "./item"
-    },
-    "component": true
+        "item": "item"
+    }
 }

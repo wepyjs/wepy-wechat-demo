@@ -14,8 +14,7 @@ page {
 
 <script>
 
-import wepy from 'wepy';
-import 'wepy-async-function';
+import wepy from '@wepy/core';
 import promisify from '@wepy/use-promisify';
 
 wepy.use(promisify, wepy);

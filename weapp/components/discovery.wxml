@@ -1,6 +1,6 @@
 
 <view class="discovery">
     <view wx:for="{{ list }}" wx:for-index="index" wx:for-item="item" wx:key="index">
-        <group list="{{ item }}" bind_init="_initComponent"></group>
+        <group bind_init="_initComponent" list="{{ item }}"></group>
     </view>      
 </view>

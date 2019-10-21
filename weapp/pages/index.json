@@ -2,12 +2,12 @@
     "navigationBarTitleText": "wepy - 微信",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#3b3a40",
+    "component": true,
     "usingComponents": {
         "tab": "../components/tab",
         "message": "../components/message",
         "discovery": "../components/discovery",
         "contact": "../components/contact",
         "me": "../components/me"
-    },
-    "component": true
+    }
 }

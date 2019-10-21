@@ -1,6 +1,6 @@
 {
+    "component": true,
     "usingComponents": {
-        "list": "./list"
-    },
-    "component": true
+        "list": "list"
+    }
 }

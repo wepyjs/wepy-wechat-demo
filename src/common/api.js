@@ -3,7 +3,7 @@ import m_history from '../mocks/history';
 import m_reply from '../mocks/reply';
 import global from './global';
 
-import wepy from 'wepy';
+import wepy from '@wepy/core';
 
 export default {
     getRandomReply (id) {

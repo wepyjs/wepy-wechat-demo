@@ -112,7 +112,7 @@
     </div>
 </template>
 <script>
-    import wepy from 'wepy';
+    import wepy from '@wepy/core';
     //import Alpha from './alpha';
     import api from '../common/api';
     import global from '../common/global';

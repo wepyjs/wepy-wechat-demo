@@ -1,7 +1,7 @@
 
 <view class="list">
     <view wx:for="{{ list }}" wx:for-index="index" wx:for-item="item" wx:key="index">
-        <view data-wpytap-a="{{ index }}" data-wpytap-b="{{ item }}" data-wpytap-c="{{ $event }}" bindtap="_proxy" data-wpy-evt="0" class="item">
+        <view data-wpy-evt="25-0" bindtap="_proxy" data-wpytap-a="{{ index }}" data-wpytap-b="{{ item }}" class="item">
             <image src="{{item.icon}}" class="icon"></image>
             <label class="title">{{item.title}}</label>
             <image src="../images/arrow_left.png" class="arrow_left"></image>

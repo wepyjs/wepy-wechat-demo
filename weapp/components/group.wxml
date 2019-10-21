@@ -1,6 +1,6 @@
 
 <view class="list">
     <view wx:for="{{ list }}" wx:for-index="index" wx:for-item="item" wx:key="index">
-        <item item="{{ item }}" index="{{ index }}" bind_init="_initComponent"></item>
+        <item bind_init="_initComponent" item="{{ item }}" index="{{ index }}"></item>
     </view>
 </view>

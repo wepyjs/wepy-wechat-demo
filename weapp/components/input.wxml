@@ -4,7 +4,7 @@
         <image src="../images/voice.png" class="input_icon voice"></image>
         <image src="../images/face.png" class="input_icon face"></image>
         <image src="../images/plus.png" class="input_icon plus"></image>
-        <view data-wpytap-a="{{ $event }}" bindtap="_proxy" data-wpy-evt="0" class="send{{readyToSend.length == 0 ? ' hidden' : ''}}">发送</view>
-        <input value="{{ readyToSend }}" bindinput="_proxy" data-wpyfocus-a="{{ $event }}" bindfocus="_proxy" data-wpy-evt="1" data-wpyblur-a="{{ $event }}" bindblur="_proxy" data-wpytype-a="{{ $event }}" bindtype="_proxy" class="input_text{{focusFlag ? ' focusFlag' : ''}}"></input>
+        <view data-wpy-evt="14-0" bindtap="_proxy" class="send{{readyToSend.length == 0 ? ' hidden' : ''}}">发送</view>
+        <input value="{{ readyToSend }}" bindinput="_proxy" data-model-id="0" data-wpy-evt="14-1" bindfocus="_proxy" bindblur="_proxy" bindtype="_proxy" class="input_text{{focusFlag ? ' focusFlag' : ''}}"></input>
     </view>
 </view>
